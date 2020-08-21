@@ -12,6 +12,7 @@ output: pdf_document
 
 - Install the latest R version. R is open source and freely available from here: https://stat.ethz.ch/CRAN/. Click on the respective link for your operating system (Windows, Mac, Linux), and follow the instructions.
 - Once R is installed, install RStudio from here: https://www.rstudio.com/products/rstudio/download/#download. Under "Installers for Supported Platforms", click on the respective installer for your operating system (Windows, Mac, etc.) and follow the instructions.
+- In case you have problems with the installations, you can create a free account for [RStudio Cloud](https://rstudio.cloud/): https://rstudio.cloud/, and use the R/RStudio in the cloud for this course. Note, however, that it is strongly recommended to also have R/RStudio running on your own machine.
 
 
 # Course Content
@@ -45,13 +46,13 @@ This is a block course and part of the introductory week for MEcon students at H
 # Detailed Schedule
  
 - 09:15-10:00 *Introduction, Background, Tools* (UM [TA, JS])
-- 10:00-10:15 *BreJS, support with installations* (UM, TA, JS)
+- 10:00-10:15 *Break, support with installations* (UM, TA, JS)
 - 10:15-11:00 *Exercises, First Steps with R* (TA, JS)
-- 11:00-11:15 *BreJS, Q&A* (TA, JS)
+- 11:00-11:15 *Break, Q&A* (TA, JS)
 - 11:15-12:00 *First Steps with R, Concepts* (TA, JS)
 - 12:00-13:15 *Lunch (individually)*
 - 13:15-14:00 *Exercises* (TA, JS)
-- 14:00-14:15 *BreJS, Q&A* (TA, JS)
+- 14:00-14:15 *Break, Q&A* (TA, JS)
 - 14:15-15:00 *Working with Data* (UM [TA, JS])
 
 (UM: Ulrich Matter, TA: Thomas Aebischer, JS: Jan Serwart)
