@@ -1,7 +1,3 @@
----
-title: "README.md"
-author: Ulrich Matter
----
 
 # About
 
