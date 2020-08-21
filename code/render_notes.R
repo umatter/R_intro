@@ -49,7 +49,7 @@ for (i in 1:length(file_paths)) {
      
      # R code
      cat(paste0("Generating ", f, " as R-Script\n"))
-     output_path <- paste0("materials/sourcecode/", gsub(".Rmd", ".R", f_name, fixed = TRUE))
+     output_path <- paste0("materials/R_code/", gsub(".Rmd", ".R", f_name, fixed = TRUE))
      purl(input = f,
           output = output_path,
           documentation = 1)
