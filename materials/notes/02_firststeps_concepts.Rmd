@@ -1,0 +1,504 @@
+---
+title: 'A Brief Introduction to Programming with R'
+subtitle: 'Part II: First Steps and Basic Concepts'
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St.Gallen)
+date: "04/09/2020"
+output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://example.com/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+- \usepackage{float}
+- \usepackage{fancyhdr}
+- \pagestyle{fancy}
+- \rhead{\textcopyright \enspace 2020 by Ulrich Matter \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{\includegraphics[width = .05\textwidth]{../img/cc.png}}}
+css: ../../style/notes_hsg.css
+bibliography: ../references/R_intro.bib
+---
+
+
+
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+knitr::opts_chunk$set(fig.pos = 'htb!')
+```
+
+
+# First steps with R
+
+Before introducing some of the key functions and packages for data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier. In fact, since R is an open source environment, you can directly look at the source code of already implemented programs in order to learn how they work.
+
+
+
+## Variables and Vectors
+```{r}
+# a simle integer vector
+a <- c(10,22,33,22,40)
+
+# give names to vector elements
+names(a) <- c("Andy", "Betty", "Claire", "Daniel", "Eva")
+a
+
+# indexing either via number of vector element (start count with 1)
+# or by element name
+a[3]
+a["Claire"]
+
+# Inspect the object you are working with
+class(a) # returns the class(es) of the object
+str(a) # returns the structure of the object ("what is in variable a?")
+
+```
+
+## Math Operators
+R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.
+```{r}
+# basic arithmetic 
+2+2
+sum_result <- 2+2
+sum_result
+sum_result -2
+4*5
+20/5
+
+# order of operations
+2+2*3
+(2+2)*3
+(5+5)/(2+3)
+
+# work with variables
+a <- 20
+b <- 10
+a/b
+
+# arithmetic with vectors
+a <- c(1,4,6)
+a * 2
+
+b <- c(10,40,80)
+a * b
+a + b 
+
+
+# other common math operators and functions
+4^2
+sqrt(4^2)
+log(2)
+exp(10)
+log(exp(10))
+
+# special numbers
+# Euler's number
+exp(1)
+# Pi
+pi
+
+
+```
+
+
+
+# Basic programming concepts in R
+
+## Loops
+A loop is typically a sequence of statements that is executed a specific number of times. How often the code 'inside' the loop is executed depends on a (hopefully) clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called 'for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called 'while-loop'. The following subsections illustrate both of these concepts in R.
+
+### For-loops
+In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The following flow-chart illustrates the concept.
+
+```{r for, echo= FALSE, fig.align="center", out.width="40%", fig.cap="(ref:capfor)", purl=FALSE}
+include_graphics("../img/forloop.png")
+```
+(ref:capfor) Foor-loop illustration. 
+
+
+For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: "Start with 0 as the current total value, for each element $i$ of the $n$ elements in the vector add the element's value to the current total value." Note how this logically implies that the loop will 'stop' once the value of the last element in the vector is added to the total. Let's illustrate this in R. Take the numeric vector `c(1,2,3,4,5)`. A for loop to sum up all elements can be implemented as follows:
+
+```{r}
+# vector to be summed up
+numbers <- c(1,2.1,3.5,4.8,5)
+# initiate total
+total_sum <- 0
+# number of iterations
+n <- length(numbers)
+# start loop
+for (i in 1:n) {
+     total_sum <- total_sum + numbers[i]
+}
+
+# check result
+total_sum
+# compare with result of sum() function
+sum(numbers)
+
+```
+
+### Nested for-loops
+In some situations a simple for-loop might not be sufficient. Within one sequence of commands there might be another sequence of commands that also has to be executed for a number of times each time the first sequence of commands is executed. In such a case we speak of a 'nested for-loop'. We can illustrate this easily by extending the example of the numeric vector above to a matrix for which we want to sum up the values in each column. Building on the loop implemented above, we would say 'for each column `j` of a given numeric matrix, execute the for-loop defined above'.
+
+
+```{r}
+# matrix to be summed up
+numbers_matrix <- matrix(1:20, ncol = 4)
+numbers_matrix
+
+```
+
+```{r}
+
+# number of iterations for outer loop
+m <- ncol(numbers_matrix)
+# number of iterations for inner loop
+n <- nrow(numbers_matrix)
+# start outer loop (loop over columns of matrix)
+for (j in 1:m) {
+     # start inner loop
+     # initiate total
+     total_sum <- 0
+     for (i in 1:n) {
+          total_sum <- total_sum + numbers_matrix[i, j]
+          }
+     print(total_sum)
+     }
+
+
+```
+
+### While-loop
+In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \@ref(fig:while) illustrates this point.
+
+```{r while, echo= FALSE, fig.align="center", out.width="65%", fig.cap="(ref:capwhile)", purl=FALSE}
+include_graphics("../img/while_loop_own.png")
+```
+(ref:capwhile) While-loop illustration.
+
+For example, a while-loop in plain English could state something like "start with 0 as the total, add 1.12 to the total until the total is larger than 20." We can implement this in R as follows.
+
+```{r}
+# initiate starting value
+total <- 0
+# start loop
+while (total <= 20) {
+     total <- total + 1.12
+}
+
+# check the result
+total
+
+```
+
+
+## Booleans and Logical Statements
+Note that in order to write a meaningful while-loop we have to make use of a logical statement such as "the value stored in the variable `total`is smaller or equal to `20`" (`total <= 20`). A logical statement results in a 'Boolean' data type. That is, a data type with the only two possible values `TRUE` or `FALSE` (`1` or `0`).
+
+
+```{r}
+2+2 == 4
+3+3 == 7
+```
+
+Logical statements play an important role in fundamental programming concepts. In particular, they are crucial to make conditional statements ('if-statements') that build the control structure of a program, controlling the 'direction' the program takes (given certain conditions).
+
+```{r}
+condition <- TRUE
+if (condition) {
+     print("This is true!")
+} else {
+     print("This is false!")
+}
+
+condition <- FALSE
+if (condition) {
+     print("This is true!")
+} else {
+     print("This is false!")
+}
+
+
+```
+
+
+## R Functions
+
+R programs heavily rely on functions. Conceptually, 'functions' in R are very similar to what we know as 'functions' in math (i.e., $f:X \rightarrow Y$). A function can thus, e.g., take a variable $X$ as input and provide value $Y$ as output. The actual calculation of $Y$ based on $X$ can be something as simple as $2\times X = Y$. But, it could also be a very complex algorithm or an operation that does not have anything to do with numbers and arithmetic.^[Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math (and involves binary numbers). However, the point here is that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.] As such, functions facilitate the re-usage of blocks of code that take care of a certain task.
+
+In R—and in many other programming languages—functions take 'parameter values' as input, process those values according to a predefined program, and 'return' the result. For example, a function could take a numeric vector as input and return the sum of all the individual numeric values in the input vector.
+
+When we open RStudio, all basic functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kind of topics related to data analysis can be loaded additionally by installing the respective R-packages (`install.packages("PACKAGE-NAME")`), and then loading the packages with `library(PACKAGE-NAME)`. In addition, it is straightforward to define our own functions.
+
+
+
+### Compute the mean
+
+For example, suppose we want to repeatedly compute the mean of a vector's elements. We do so by summing up the elements in a vector with `sum()` and dividing the returned sum by the number of elements in the vector, which we get with `length()`.
+
+```{r}
+# own implementation: use R-function for summing up the elements in a vector
+# and getting the number of elements in a vector
+sum(a) / length(a)
+```
+
+Instead of repeatedly writing the above line of code in a script, we can once define a function called `my_mean()` and then simply call this function to get the same result.
+
+```{r}
+# define our own function to compute the mean, given a numeric vector
+my_mean <- function(x) {
+     x_bar <- sum(x) / length(x)
+     return(x_bar)
+}
+
+# test it
+my_mean(a)
+# compare the result with the function delivered with the R installation
+mean(a)
+```
+
+
+
+
+# Data Structures and Indeces
+*R* provides different object classes to work with data. In simple terms, they differ with regard to how data is structured when stored in in the *R* environment. This, in turn, defines how we can access different parts of the data in this variable. For example, if we store a bunch of numbers in a numeric vector, we can access each of these numbers individually, by telling *R* to give us the first, second, $n$th element of this vector. If we store data in a two-dimensional object such as a matrix, we can access the data column-wise, row-wise, or cell-wise. Depending on the task, one or the other object class is preferable to store and work with data.
+
+## Vectors and Lists
+
+### Vectors
+A vector containing integer (or numeric) values:
+```{r}
+# integer
+integer_vector <- 10:20
+integer_vector[2]
+integer_vector[2:5]
+
+# numeric
+numeric_vector <- c(1.4, 5.6, 7.2)
+numeric_vector[1]
+numeric_vector[1:2]
+```
+
+
+A string/character vector ('a vector containing text'):
+```{r}
+# character vector
+string_vector <- c("a", "b", "c")
+string_vector[-3]
+```
+
+
+## Lists
+A list can contain objects of differing data types and differing length in its elements, for example a numeric vector and a string_vector:
+
+```{r}
+# initiate a list containing vectors
+mylist <- list(numbers = numeric_vector, letters = string_vector)
+mylist
+```
+
+
+We can access the elements of a list in various ways
+```{r}
+# with the element's name
+mylist$numbers
+mylist["numbers"]
+# via the index
+mylist[1]
+```
+
+With `[[]]` we can access directly the content of the element
+
+```{r}
+mylist[[1]]
+```
+
+
+
+Lists can also be nested (list of lists of lists....)
+
+```{r}
+mynestedlist <- list(a = mylist, b = 1:5)
+mynestedlist
+```
+
+
+## Matrices and Data Frames
+When working on a data analysis task in R we typically deal with data in a two-dimensional ('table-like') format with observations in rows and variables describing these observations in columns. If all variables in a data set are of the same type we can store it in a `matrix`. In case the variables of a data set are of differing types, we typically store it in a `data.frame`. 
+
+### Matrices and Arrays
+Matrices (or more generally, 'arrays') are essentially vectors with an additional dimensionality definition.
+
+
+```{r}
+# initiate an integer vector
+integer_vector <- 1:8
+# initiate a matrix based on this vector
+mymatrix <- matrix(integer_vector, nrow = 4)
+```
+
+The indexing of a matrix is very similar to vectors. However, within the `[]`-expression, we indicate the dimension we want to access with a comma.
+
+```{r}
+# return the second row
+mymatrix[2,]
+# return the first two columns
+mymatrix[,1:2]
+# return the cell in the second row of the first column
+mymatrix[2,1]
+```
+
+### Data-Frames 
+
+Data frames are the most common objects to store/work with data for analytics purposes in R. Most functions to import/load data into the R environment return the data in the form of a `data.frame`. Technically they are similar to a list with elements of identical length.
+
+
+```{r}
+# data frames ("lists as columns")
+mydf <- data.frame(Name = c("Alice", "Betty", "Claire"), Age = c(20, 30, 45))
+mydf
+```
+
+We can access elements of the `data.frame` in various ways
+
+```{r}
+# select the age column
+mydf$Age
+mydf[, "Age"]
+mydf[, 2]
+# select the second row
+mydf[2,]
+
+```
+
+## Classes and Data Structures
+
+When importing data to *R*, using a new *R*-package, or extracting data from web sources, it is imperative to understand how the data is structured in the *R*-object (variable) one is working with. A lot of errors occur due to giving *R* functions input in the wrong format/structure. Having a close look at how the data is stored in a variable that we want to work with further can help avoid such errors.^[Note that basic *R* functions as well as functions distributed via *R* packages are usually very well documented (look up documentation with `help(FUNCTION-NAME)` or `?FUNCTION-NAME`. An important part of such documentations is what class the input arguments of a function must have and what the class of the returned object is. See, for example the documentation of `mean()` by typing `?mean` into the *R*-console and hit enter.] The function `class()` returns the class(es) of an *R* object:
+
+```{r}
+# have a look at the class of the object
+class(mydf)
+class(mymatrix)
+
+```
+
+To get a clear idea of the structure of data stored in a specific variable, we can call the function `str()` (for structure) with the object of interest as the only function argument. This is particularly helpful when dealing with a complex/nested data structure. 
+
+```{r}
+# have a closer look at the data structure
+str(mydf)
+```
+
+
+<!-- ## Working with Text -->
+
+<!-- ```{r} -->
+<!-- # store a string in a variable -->
+<!-- astring <- "Hello, world" -->
+<!-- class(astring) -->
+
+<!-- # string operations -->
+<!-- # split  -->
+<!-- strsplit(astring, ", ") -->
+<!-- # paste -->
+<!-- paste(astring, "! How are you?", sep = "") -->
+<!-- # count number of characters -->
+<!-- nchar(astring) -->
+
+<!-- # character vectors -->
+<!-- stringvec <- c("Apple", "Banana", "Orange") -->
+<!-- stringvec -->
+<!-- # search patterns -->
+<!-- grep(pattern = "A", x = stringvec) -->
+<!-- grep(pattern = "an", x = stringvec) -->
+<!-- # operations with vectors -->
+<!-- paste0(stringvec, "!", sep="") -->
+
+<!-- ``` -->
+
+
+
+
+# Exercises
+
+## Exercise A: Write a Sum Function
+
+In the code example above (introducing the for-loop) you see how we can use for loops to sum up numbers stored in a numeric vector. Use this code example and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
+
+```{r eval=FALSE, purl=FALSE}
+my_sum <- 
+     function(x){
+          
+     }
+
+```
+
+Test your function by comparing its output with the output of `sum()` (the pre-implemented sum function in R) when calling it with the same input. 
+
+
+
+## Exercise B: Robustness and Warnings
+Once you have implemented and successfully tested `my_sum()`, see what happens if you call it with the following vector as input
+
+```{r}
+numbers2 <- c("1", "2", "3")
+```
+
+
+Why do we get an error? Investigate by comparing the vector `numbers` from the code example above with the new vector `numbers2` (the functions `str()` and `class()` might help you).
+
+Extend your `my_sum()` function with a control statement that checks whether the input is of the right class for the function to work (Hint: `class(x)!="numeric"`). The goal is to make the function more robust to wrong input. That is, if the input is wrong, issue a warning but don't break down with an error. Use the following code for the warning message:
+
+```{r eval=FALSE, purl=FALSE}
+warning("Wrong input! This function only accepts numeric or integer values!")
+```
+
+Test your enhanced sum function with the two input vectors `numbers` and `numbers2`.
+
+
+
+
+## Exercise C: Standard Deviation Function
+In the example above we've implemented our own R function to compute the mean, given a numeric vector with the help of already implemented R functions (`length()` and `sum()`; alternatively use your own `my_sum()`). Now implement an R function called `my_sd` that computes the standard deviation $SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}$. (Hint: see the math operators section above for some of the ingredients).
+
+Test your implementation by comparing its results with the already implemented `sd()` function.
+
+
+## Exercise D: Standard Error Function
+Building on the function written in Exercise C, implement a function to compute (the estimate of) the sample mean standard error as defined here: $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$. Hint: the idea is to use your own implementation (in Exercise C) to compute $SD$ as a first step of your standard error function. 
+
+Exercises C and D should illustrate how you can approach more complex problems by breaking them up into smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing $\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}$, you see that computing $SD$ is a part of the overall problem, which can be addressed separately.
+
+## Exercise E: T-test 
+Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/Student%27s_t-test):
+$t = \frac{\bar{x} - \mu_0}{\frac{SE}{\sqrt{n}}}$.
+
+
+
+
+<div id="refs"></div>
+
+
+<style>
+  .vskip {
+     margin-bottom: 0.5cm;
+  }
+</style>
+
+
+<p class="vskip">
+<p class="vskip">
+
+___
+
+</p>
+   <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
