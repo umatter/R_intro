@@ -459,4 +459,11 @@ Implement a function for the one-sample [t-test](https://en.wikipedia.org/wiki/S
 
 $t = \frac{\bar{x} - \mu_0}{\frac{SD}{\sqrt{n}}}$.
 
+## Exercise F: Fibonacci Sequence
+
+In mathematics, the Fibonacci sequence is composed of a sequence of numbers, where each succeeding number is the sum of the two preceding ones. The first two numbers of the sequence are defined as $F_0=0$ and $F_1=1$, respectively. Following numbers are given by $F_n=F_{n-1}+F_{n-2}$, for $n>1$.
+
+Your task is now to obtain the first 30 numbers of the Fibonacci sequence. To do so, first create an empty vector of size 30 (empty referring to you placing 30 $NA$ values into a vector; hint: type ?rep in the R console on how to replicate values in R). Then, replace the first two $NA$ values in the created vector with the corresponding starting values $F_0=0$ and $F_1=1$, respectively. Following, write a for-loop to calculate the remaining 28 numbers of the sequence, at each iteration replacing the $NA$ value in the vector with the corresponding correct Fibonacci number.
+
+
 
