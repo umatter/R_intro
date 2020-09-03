@@ -26,7 +26,7 @@ library(knitr)
 ## Welcome to A Brief Introduction to Programming with R!
 
 - Fire up your notebooks!
-- Download (or clone) the course materials: https://umatter.github.io/courses
+- [Download](https://github.com/umatter/R_intro/archive/master.zip) (or clone) the course materials: https://github.com/umatter/R_intro
 
 ## Our Team - At Your Service
 
