@@ -4621,7 +4621,7 @@ pre {
 <pre >##  Named num [1:5] 10 22 33 22 40
 ##  - attr(*, &quot;names&quot;)= chr [1:5] &quot;Andy&quot; &quot;Betty&quot; &quot;Claire&quot; &quot;Daniel&quot; ...</pre>
 
-</article></slide><slide class=""><hgroup><h2>Math Operators</h2></hgroup><article  id="math-operators" class="larger">
+</article></slide><slide class=""><hgroup><h2>Math Operators</h2></hgroup><article  class="larger" id="math-operators">
 
 <table class = 'rmdtable'>
 <tr class="header">
@@ -4964,7 +4964,7 @@ mydf[2,]</pre>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Exercises</h2></hgroup><article  id="exercises">
 
-</article></slide><slide class=""><hgroup><h2>Exercise A: Write a Sum Function</h2></hgroup><article  id="exercise-a-write-a-sum-function" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Exercise A: Write a Sum Function</h2></hgroup><article  class="smaller" id="exercise-a-write-a-sum-function">
 
 <p>In the code example above, introducing the for-loop, you see how we can use such a loop to sum up numbers stored in a numeric vector. Use this code example and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector’s elements.</p>
 
@@ -4975,7 +4975,7 @@ mydf[2,]</pre>
 
 <p>Test your function by comparing its output with the output of <code>sum()</code> (the pre-implemented sum function in R) when calling it with the same input.</p>
 
-</article></slide><slide class=""><hgroup><h2>Exercise B: Robustness and Warnings</h2></hgroup><article  id="exercise-b-robustness-and-warnings" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Exercise B: Robustness and Warnings</h2></hgroup><article  class="smaller" id="exercise-b-robustness-and-warnings">
 
 <p>Once you have implemented and successfully tested <code>my_sum()</code>, see what happens if you call it with the following vector as input</p>
 
@@ -4989,7 +4989,7 @@ mydf[2,]</pre>
 
 <p>Test your enhanced sum function with the two input vectors <code>numbers</code> and <code>numbers2</code>.</p>
 
-</article></slide><slide class=""><hgroup><h2>Exercise C: Standard Deviation Function</h2></hgroup><article  id="exercise-c-standard-deviation-function" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Exercise C: Standard Deviation Function</h2></hgroup><article  class="smaller" id="exercise-c-standard-deviation-function">
 
 <p>In the example above we’ve implemented our own R function to compute the mean, given a numeric vector (with the help of already implemented R functions (<code>length()</code> and <code>sum()</code>; alternatively use your own <code>my_sum()</code>). Now implement an R function called <code>my_sd</code> that computes the standard deviation</p>
 
@@ -4999,7 +4999,7 @@ mydf[2,]</pre>
 
 <p>Test your implementation by comparing its results with the already implemented <code>sd()</code> function.</p>
 
-</article></slide><slide class=""><hgroup><h2>Exercise D: Standard Error Function</h2></hgroup><article  id="exercise-d-standard-error-function" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Exercise D: Standard Error Function</h2></hgroup><article  class="smaller" id="exercise-d-standard-error-function">
 
 <p>Building on the function written in Exercise C, implement a function to compute (the estimate of) the sample mean standard error as defined here:</p>
 
@@ -5013,7 +5013,13 @@ mydf[2,]</pre>
 
 <p>Implement a function for the one-sample <a href='https://en.wikipedia.org/wiki/Student%27s_t-test' title=''>t-test</a>:</p>
 
-<p>\(t = \frac{\bar{x} - \mu_0}{\frac{SD}{\sqrt{n}}}\).</p></article></slide>
+<p>\(t = \frac{\bar{x} - \mu_0}{\frac{SD}{\sqrt{n}}}\).</p>
+
+</article></slide><slide class=""><hgroup><h2>Exercise F: Fibonacci Sequence</h2></hgroup><article  id="exercise-f-fibonacci-sequence">
+
+<p>In mathematics, the Fibonacci sequence is composed of a sequence of numbers, where each succeeding number is the sum of the two preceding ones. The first two numbers of the sequence are defined as \(F_0=0\) and \(F_1=1\), respectively. Following numbers are given by \(F_n=F_{n-1}+F_{n-2}\), for \(n&gt;1\).</p>
+
+<p>Your task is now to obtain the first 30 numbers of the Fibonacci sequence. To do so, first create an empty vector of size 30 (empty referring to you placing 30 \(NA\) values into a vector; hint: type ?rep in the R console on how to replicate values in R). Then, replace the first two \(NA\) values in the created vector with the corresponding starting values \(F_0=0\) and \(F_1=1\), respectively. Following, write a for-loop to calculate the remaining 28 numbers of the sequence, at each iteration replacing the \(NA\) value in the vector with the corresponding correct Fibonacci number.</p></article></slide>
 
 
   <slide class="backdrop"></slide>
