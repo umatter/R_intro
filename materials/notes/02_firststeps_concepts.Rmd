@@ -4,7 +4,7 @@ subtitle: 'Part II: First Steps and Basic Concepts'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St.Gallen)
-date: "04/09/2020"
+date: "10/09/2021"
 output:
   html_document:
     highlight: tango
@@ -39,7 +39,7 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 
 # First steps with R
 
-Before introducing some of the key functions and packages for data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier. In fact, since R is an open source environment, you can directly look at the source code of already implemented programs in order to learn how they work.
+Before introducing some of the key functions and packages for data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier. In fact, since R is an open source environment, you can directly look at the source code of R packages in order to learn how they work.
 
 
 
@@ -114,7 +114,7 @@ pi
 # Basic programming concepts in R
 
 ## Loops
-A loop is typically a sequence of statements that is executed a specific number of times. How often the code 'inside' the loop is executed depends on a (hopefully) clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called 'for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called 'while-loop'. The following subsections illustrate both of these concepts in R.
+A loop consists a sequence of code that is executed a specific number of times. How often the code 'inside' the loop is executed depends on a (hopefully) clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called 'for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called 'while-loop'. The following subsections illustrate both of these concepts in R.
 
 ### For-loops
 In simple terms, a for-loop tells the computer to execute a sequence of commands 'for each case in a set of n cases'. The following flow-chart illustrates the concept.
@@ -233,17 +233,15 @@ if (condition) {
 
 ## R Functions
 
-R programs heavily rely on functions. Conceptually, 'functions' in R are very similar to what we know as 'functions' in math (i.e., $f:X \rightarrow Y$). A function can thus, e.g., take a variable $X$ as input and provide value $Y$ as output. The actual calculation of $Y$ based on $X$ can be something as simple as $2\times X = Y$. But, it could also be a very complex algorithm or an operation that does not have anything to do with numbers and arithmetic.^[Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math (and involves binary numbers). However, the point here is that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.] As such, functions facilitate the re-usage of blocks of code that take care of a certain task.
+R programs heavily rely on functions. Conceptually, 'functions' in R are very similar to what we know as 'functions' in math (i.e., $f:X \rightarrow Y$). A function can thus, e.g., take a variable $X$ as input and provide value $Y$ as output. The actual calculation of $Y$ based on $X$ can be something as simple as $2\times X = Y$. But, it could also be a very complex algorithm or an operation that does not have anything to do with numbers and arithmetic.^[Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math (and involves binary numbers). However, the point here is that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.] As such, functions facilitate the re-usage of blocks of code that take care of a certain task. Functions take 'parameter values' as input, process those values and 'return' the result. 
 
-In R—and in many other programming languages—functions take 'parameter values' as input, process those values according to a predefined program, and 'return' the result. For example, a function could take a numeric vector as input and return the sum of all the individual numeric values in the input vector.
-
-When we open RStudio, all basic functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kind of topics related to data analysis can be loaded additionally by installing the respective R-packages (`install.packages("PACKAGE-NAME")`), and then loading the packages with `library(PACKAGE-NAME)`. In addition, it is straightforward to define our own functions.
+When we open RStudio, all basic R functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kind of topics related to data analysis can be loaded additionally by installing the respective R-packages (`install.packages("PACKAGE-NAME")`), and then loading the packages with `library(PACKAGE-NAME)`. In addition, it is straightforward to define our own functions.
 
 
 
 ### Compute the mean
 
-For example, suppose we want to repeatedly compute the mean of a vector's elements. We do so by summing up the elements in a vector with `sum()` and dividing the returned sum by the number of elements in the vector, which we get with `length()`.
+For example, suppose we want to compute the mean for several variables. We do so by summing up the elements in a vector with `sum()` and dividing the returned sum by the number of elements in the vector, which we get with `length()`.
 
 ```{r}
 # own implementation: use R-function for summing up the elements in a vector
@@ -270,7 +268,7 @@ mean(a)
 
 
 # Data Structures and Indeces
-*R* provides different object classes to work with data. In simple terms, they differ with regard to how data is structured when stored in in the *R* environment. This, in turn, defines how we can access different parts of the data in this variable. For example, if we store a bunch of numbers in a numeric vector, we can access each of these numbers individually, by telling *R* to give us the first, second, $n$th element of this vector. If we store data in a two-dimensional object such as a matrix, we can access the data column-wise, row-wise, or cell-wise. Depending on the task, one or the other object class is preferable to store and work with data.
+*R* provides different object classes to work with data. In simple terms, they differ with regard to how data is structured when stored in in the *R* environment. This, in turn, defines how we can access specific data values. For example, if we store a bunch of numbers in a numeric vector, we can access each of these numbers individually, by telling *R* to give us the first, second, $n$th element of this vector. If we store data in a two-dimensional object such as a matrix, we can access the data column-wise, row-wise, or cell-wise. Depending on the task, one or the other object class is preferable to store and work with data.
 
 ## Vectors and Lists
 

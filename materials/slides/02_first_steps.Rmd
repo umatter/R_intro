@@ -2,7 +2,7 @@
 title: 'A Brief Introduction to Programming with R'
 subtitle: 'Part II:<br>First Steps and Basic Concepts'
 author: "Prof. Dr. Ulrich Matter"
-date: "04/09/2020"
+date: "10/09/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css

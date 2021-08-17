@@ -2,7 +2,7 @@
 title: 'A Brief Introduction to Programming with R'
 subtitle: 'Part I :<br>Background/Tools'
 author: "Prof. Dr. Ulrich Matter"
-date: "04/09/2020"
+date: "10/09/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -41,14 +41,14 @@ library(knitr)
 ## The Plan for Today
 
 - 09:15-10:00 *Introduction, Background, Tools* (UM [TA, JS])
-- 10:00-10:15 *Break, support with installations* (UM, TA, JS)
+- 10:00-10:15 *Break, support with installations* (TA, JS)
 - 10:15-11:00 *Exercises, First Steps with R* (TA, JS)
 - 11:00-11:15 *Break, Q&A* (TA, JS)
 - 11:15-12:00 *First Steps with R, Concepts* (TA, JS)
 - 12:00-13:15 *Lunch (individually)*
 - 13:15-14:00 *Exercises* (TA, JS)
 - 14:00-14:15 *Break, Q&A* (TA, JS)
-- 14:15-15:00 *Working with Data* (UM [TA, JS])
+- 14:15-15:00 *Working with Data* (TA, JS)
 
 ---
 

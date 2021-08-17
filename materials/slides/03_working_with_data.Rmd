@@ -2,7 +2,7 @@
 title: 'A Brief Introduction to Programming with R'
 subtitle: 'Part III :<br>Working with Data'
 author: "Prof. Dr. Ulrich Matter"
-date: "04/09/2020"
+date: "10/09/2021"
 output:   
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -379,7 +379,7 @@ summary(model_fit2)
 
 Other frequently used packages for econometric regression analysis:
 
-- Panel data econometrics: package `plm`.
+- Panel data econometrics: package `plm`, `fixest`, `lfe`.
 - Time-series econometrics: package `tseries`.
 - Basic IV regression: `ivreg()` in package `AER`.
 - Generalized methods of moments: package `gmm`.
