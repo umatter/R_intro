@@ -60,27 +60,56 @@ include_graphics("../img/help.png")
 
 # Why learn to program (now)?
 
-## Background: Technological change
+<!-- ## Background: Technological change -->
 
 
-```{r computers, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
-include_graphics("../img/computers.jpg")
+<!-- ```{r computers, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE} -->
+<!-- include_graphics("../img/computers.jpg") -->
+<!-- ``` -->
+
+## Relevance for modern economic research
+
+```{r css, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/css.png")
 ```
 
 
-## Background: Technological change
+## Relevance for modern economic research
+
+```{r internet, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/internet.png")
+```
+
+
+## Relevance for modern economic research
+
+```{r bigdata, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/bigdata.png")
+```
+
+
+## Relevance for modern economic research
+
+```{r text, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
+include_graphics("../img/text.png")
+```
+
+
+
+
+## Economy/Business
 
 
 ```{r newoil, echo=FALSE, out.width = "45%", fig.align='center',  purl=FALSE}
 include_graphics("../img/economist_oildata.png")
 ```
 
-## Background: Technological change
+<!-- ## Background: Technological change -->
 
 
-```{r airevolution, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE}
-include_graphics("../img/AIrevolution.png")
-```
+<!-- ```{r airevolution, echo=FALSE, out.width = "90%", fig.align='center',  purl=FALSE} -->
+<!-- include_graphics("../img/AIrevolution.png") -->
+<!-- ``` -->
 
 
 
