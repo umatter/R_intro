@@ -1,0 +1,2213 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[
+  12pt,
+]{style/krantz}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \setmonofont[Scale=0.7]{Source Code Pro}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={A Brief Introduction to Programming with R},
+  pdfauthor={Ulrich Matter},
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=Blue,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[bf,singlelinecheck=off]{caption}
+
+\usepackage{Alegreya}
+\usepackage[scale=.7]{sourcecodepro}
+
+\usepackage{framed,color}
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
+
+\renewenvironment{quote}{\begin{VF}}{\end{VF}}
+\let\oldhref\href
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+
+\ifxetex
+  \usepackage{letltxmacro}
+  \setlength{\XeTeXLinkMargin}{1pt}
+  \LetLtxMacro\SavedIncludeGraphics\includegraphics
+  \def\includegraphics#1#{% #1 catches optional stuff (star/opt. arg.)
+    \IncludeGraphicsAux{#1}%
+  }%
+  \newcommand*{\IncludeGraphicsAux}[2]{%
+    \XeTeXLinkBox{%
+      \SavedIncludeGraphics#1{#2}%
+    }%
+  }%
+\fi
+
+\makeatletter
+\newenvironment{kframe}{%
+\medskip{}
+\setlength{\fboxsep}{.8em}
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\makeatletter
+\@ifundefined{Shaded}{
+}{\renewenvironment{Shaded}{\begin{kframe}}{\end{kframe}}}
+\makeatother
+
+\newenvironment{rmdblock}[1]
+  {
+  \begin{itemize}
+  \renewcommand{\labelitemi}{
+    \raisebox{-.7\height}[0pt][0pt]{
+      {\setkeys{Gin}{width=3em,keepaspectratio}\includegraphics{images/#1}}
+    }
+  }
+  \setlength{\fboxsep}{1em}
+  \begin{kframe}
+  \item
+  }
+  {
+  \end{kframe}
+  \end{itemize}
+  }
+\newenvironment{rmdnote}
+  {\begin{rmdblock}{note}}
+  {\end{rmdblock}}
+\newenvironment{rmdcaution}
+  {\begin{rmdblock}{caution}}
+  {\end{rmdblock}}
+\newenvironment{rmdimportant}
+  {\begin{rmdblock}{important}}
+  {\end{rmdblock}}
+\newenvironment{rmdtip}
+  {\begin{rmdblock}{tip}}
+  {\end{rmdblock}}
+\newenvironment{rmdwarning}
+  {\begin{rmdblock}{warning}}
+  {\end{rmdblock}}
+
+\usepackage{makeidx}
+\makeindex
+
+\urlstyle{tt}
+
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\frontmatter
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{A Brief Introduction to Programming with R}
+\author{Ulrich Matter}
+\date{2022-01-21}
+
+\begin{document}
+\maketitle
+
+% leave a few empty pages before the dedication page
+%\cleardoublepage\newpage\thispagestyle{empty}\null
+%\cleardoublepage\newpage\thispagestyle{empty}\null
+%\cleardoublepage\newpage
+
+
+\thispagestyle{empty}
+
+\begin{center}
+\includegraphics{img/dedication.pdf}
+\end{center}
+
+\setlength{\abovedisplayskip}{-5pt}
+\setlength{\abovedisplayshortskip}{-5pt}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\listoftables
+\listoffigures
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+
+
+This textbook introduces students to the fundamental practices of Data Science in the context of economic research. The course
+covers basic theoretical concepts and practical skills in gathering, preparing/cleaning, visualizing, storing, and analyzing digital
+data for research purposes.
+
+\begin{figure}
+\centering
+\includegraphics{img/cc.png}
+\caption{Creative Commons License}
+\end{figure}
+
+The online version of this book is licensed under the \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}.
+
+\begin{flushright}
+Ulrich Matter
+St.~Gallen, Switzerland
+\end{flushright}
+
+\mainmatter
+
+\hypertarget{why-learn-to-program-now}{%
+\chapter{Why learn to program (now)?}\label{why-learn-to-program-now}}
+
+With lower computing costs, lower storage costs for digital data, and the diffusion of the Internet, we have recently witnessed a stark increase in the availability of digital data describing all kind of every-day human activities \citep{einav_levin2014, matter_stutzer2015}. As a consequence, new business models and economic structures are emerging with data as their core commodity (i.e., AI-related technological and economic change). A `data-driven' economy heavily relies on processing/analyzing/handling large amounts of digital data.
+
+The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of \href{https://en.wikipedia.org/wiki/Data_science}{`Data Science'} as well as an increasing demand for `Data Scientists'. While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. The various facets of this new craft are often illustrated in the `Data Science' Venn-Diagram (see, for example, \url{http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/}), reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied, and `hacking skills', that is, the skills necessary for \emph{acquiring, cleaning, and analyzing} data \emph{programmatically}.
+
+Apart from the current `Data Science developments' and the related career opportunities for young economists, learning to program comes with many benefits for academic work in graduate economics. Many of the courses in your curriculum will at least partially touch upon practical programming exercises or concepts related to programming and scientific computing in an environment like R.
+
+\hypertarget{why-r}{%
+\section{\texorpdfstring{Why \emph{R}?}{Why R?}}\label{why-r}}
+
+\hypertarget{the-data-language}{%
+\subsection{The `data language'}\label{the-data-language}}
+
+The programming language and open-source statistical computing environment \href{www.r-project.org}{\emph{R}} has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make \emph{R} particularly useful to work with data. With the rise of the `data economy' and `data science', \emph{R} is increasingly used in various domains, going well beyond the traditional applications of academic research.
+
+\hypertarget{high-level-language-relatively-easy-to-learn}{%
+\subsection{High-level language, relatively easy to learn}\label{high-level-language-relatively-easy-to-learn}}
+
+\emph{R} is a relatively easy computer language to learn for people with no previous programming experience. The syntax is rather intuitive and error messages are not too cryptic to understand (this facilitates learning by doing). Moreover, with \emph{R}'s recent stark rise in popularity, there are plenty of freely accessible resources online that help beginners to learn the language.
+
+\hypertarget{free-open-source-large-community}{%
+\subsection{Free, open source, large community}\label{free-open-source-large-community}}
+
+Due to its vast base of contributors, \emph{R} serves as a valuable tool for users in various fields related to data analysis and computation (economics/econometrics, biomedicine, business analytics, etc.). \emph{R} users have direct access to thousands of freely available `\emph{R}-packages' (small software libraries written in \emph{R}), covering diverse aspects of data analysis, statistics, data preparation, and data import.
+
+Hence, a lot of people using \emph{R} as a tool in their daily work do not actually `write programs' (in the traditional sense of the word), but apply \emph{R} packages. Applied econometrics with \emph{R} is a good example of this. Almost any function a modern commercial computing environment with a focus on statistics and econometrics (such as \href{http://www.stata.com/}{STATA}) is offering, can also be found within the \emph{R} environment. Furthermore, there are \emph{R} packages covering all the areas of modern data analytics, including natural language processing, machine learning, big data analytics, etc. (see the \href{https://cran.r-project.org/web/views/}{CRAN Task Views} for an overview). We thus do not actually have to write a program for many tasks we perform with \emph{R}. Instead, we can build on already existing and reliable packages.
+
+\hypertarget{the-tools-rrstudio}{%
+\section{\texorpdfstring{The tools: \emph{R}/RStudio}{The tools: R/RStudio}}\label{the-tools-rrstudio}}
+
+\emph{R} is the high-level (meaning `more user friendly') programming language for statistical computing. Once we have installed \emph{R} on our computer, we can run it\ldots{}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \ldots directly from the command line, by typing \texttt{R} and hit enter (here in the OSX terminal):
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{img/r_terminal} 
+
+}
+
+\caption{Running \emph{R} in the Mac/OSX terminal.}\label{fig:terminal}
+\end{figure}
+
+
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \ldots with the simple \href{https://en.wikipedia.org/wiki/Integrated_development_environment}{Integrated Development Environment (IDE)} delivered with the basic \emph{R} installation
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/r_ide} 
+
+}
+
+\caption{Running \emph{R} in the original \emph{R} GUI/IDE.}\label{fig:ide}
+\end{figure}
+
+
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \ldots or with the more elaborated and user-friendly IDE called \emph{RStudio} (either locally or in the cloud, see, for example \href{https://rstudio.cloud/}{RStudio Cloud}:
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/rstudio_panels} 
+
+}
+
+\caption{Running \emph{R} in RStudio (IDE).}\label{fig:rstudio}
+\end{figure}
+
+
+
+The latter is what we will do throughout this course. RStudio is a very helpful tool for simple data analysis with \emph{R}, writing \emph{R} scripts (short \emph{R} programs), or even for developing \emph{R} packages (software written in \emph{R}), as well as building interactive documents, presentations, etc. Moreover, it offers many options to change its own appearance (Pane Layout, Code Highlighting, etc.).
+
+In the following, we have a look at each of the main panels that will be relevant in this course.
+
+\hypertarget{the-r-console}{%
+\subsection{\texorpdfstring{The \emph{R}-Console}{The R-Console}}\label{the-r-console}}
+
+When working in an interactive session, we simply type \emph{R} commands directly into the \emph{R} console. Typically, the output of executing a command this way is also directly printed to the console. Hence, we type a command on one line, hit enter, and the output is presented on the next line.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/rstudio_console} 
+
+}
+
+\caption{Running \emph{R} in the Mac/OSX terminal.}\label{fig:console}
+\end{figure}
+
+
+
+For example, we can tell \emph{R} to print the phrase \texttt{Hello\ world} to the console, by typing to following command in the console and hit enter:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"Hello world"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello world"
+\end{verbatim}
+
+\hypertarget{r-scripts}{%
+\subsection{\texorpdfstring{\emph{R}-Scripts}{R-Scripts}}\label{r-scripts}}
+
+Apart from very short interactive sessions, it usually makes sense to write \emph{R} code not directly in the command line but to an \emph{R}-script in the script panel. This way, we can easily execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{img/rstudio_script} 
+
+}
+
+\caption{The \emph{R} Script window in RStudio.}\label{fig:rscript}
+\end{figure}
+
+
+
+\hypertarget{r-environment}{%
+\subsection{\texorpdfstring{\emph{R} Environment}{R Environment}}\label{r-environment}}
+
+The environment pane shows what variables, objects, and data are loaded in our current \emph{R} session. Moreover, it offers functions to open documents and import data.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/rstudio_environment} 
+
+}
+
+\caption{The environment window in RStudio.}\label{fig:renvironment}
+\end{figure}
+
+
+
+\hypertarget{file-browser}{%
+\subsection{File Browser}\label{file-browser}}
+
+With the file browser window we can navigate through the folder structure and files on our computer's hard disk, modify files, and set the working directory of our current \emph{R} session. Moreover, it has a pane to show plots generated in \emph{R} and a pane with help pages and \emph{R} documentation.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{img/rstudio_files} 
+
+}
+
+\caption{The file browser window in RStudio.}\label{fig:rfiles}
+\end{figure}
+
+
+
+\hypertarget{exercises}{%
+\section{Exercises}\label{exercises}}
+
+\hypertarget{exercise-a-setting-up-a-working-environment}{%
+\subsection{Exercise A: Setting up a Working Environment}\label{exercise-a-setting-up-a-working-environment}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Open RStudio and get familiar with the file browser pane on the lower right. Navigate to a folder on your hard disk in which you want to work throughout this course (and store all the code you write in this course).
+\item
+  Use the `New Folder'-button to create a new folder. Name this new folder \texttt{r\_course}.
+\item
+  You should see the new folder listed in the file browser. Click on it to navigate to its contents (so far empty). Now, click on the `More' button and select `Set as Working Directory' in the drop-down menu.
+\item
+  Again, use the `New Folder'-button in order to create two new folders called \texttt{data} and \texttt{code}.
+\item
+  Finally, click on the project button in the top-right corner of the RStudio window (\includegraphics{img/rproject.png}) and select `New Project' in the drop-down menu. In the pop-up window, select `Existing directory', browse to and select your \texttt{r\_course} folder, then click `Create Project'.
+\end{enumerate}
+
+Now you know how to set up a meaningful basic folder structure and working environment for an \emph{R} project. The next exercise teaches you how to write \emph{R} scripts in this environment.
+
+\hypertarget{exercise-b-r-scripts}{%
+\subsection{\texorpdfstring{Exercise B: \emph{R} Scripts}{Exercise B: R Scripts}}\label{exercise-b-r-scripts}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Switch to the \emph{R} console and type the following line of code and hit enter (see example from above).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"Hello world"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+You should see the words \texttt{"Hello\ world"} printed on screen. This is the usual way of working with \emph{R} in an interactive session. However, as pointed out above, in most circumstances it makes sense to write the \emph{R} code to an \emph{R} script (in order to store and document it) and then execute the code from there.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  In the RStudio menu bar select \texttt{File/New\ File/R\ Script} to create a new file, shown/opened in the Script pane.
+\item
+  Type \texttt{print("Hello\ world")} to the first line of the script, and click on `Run' (\includegraphics{img/run.png}) to execute the code in the console.
+\item
+  Save the file as \texttt{hello\_world.R} (\texttt{File/Save\ As...}) in the sub folder \texttt{code} (created in the previous exercise).
+\item
+  Type the following command into the command line and hit enter:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"code/hello\_world.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello World!"
+\end{verbatim}
+
+Now you know how to execute \emph{R} code directly in the console (interactive session), how to execute lines of code written to an \emph{R} script, as well as how to execute the entire \emph{R} script (stored on disk) from the command line.
+
+\hypertarget{first-steps-with-r}{%
+\chapter{First steps with R}\label{first-steps-with-r}}
+
+Before introducing some of the key functions and packages for data analysis with R, we should understand how such programs basically work and how we can write them in R. Once we understand the basics of the R language and how to write simple programs, understanding and applying already implemented programs is much easier. In fact, since R is an open source environment, you can directly look at the source code of R packages in order to learn how they work.
+
+\hypertarget{variables-and-vectors}{%
+\section{Variables and Vectors}\label{variables-and-vectors}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# a simle integer vector}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{33}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{40}\NormalTok{)}
+
+\CommentTok{\# give names to vector elements}
+\FunctionTok{names}\NormalTok{(a) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andy"}\NormalTok{, }\StringTok{"Betty"}\NormalTok{, }\StringTok{"Claire"}\NormalTok{, }\StringTok{"Daniel"}\NormalTok{, }\StringTok{"Eva"}\NormalTok{)}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Andy  Betty Claire Daniel    Eva 
+##     10     22     33     22     40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# indexing either via number of vector element (start count with 1)}
+\CommentTok{\# or by element name}
+\NormalTok{a[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Claire 
+##     33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a[}\StringTok{"Claire"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Claire 
+##     33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Inspect the object you are working with}
+\FunctionTok{class}\NormalTok{(a) }\CommentTok{\# returns the class(es) of the object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(a) }\CommentTok{\# returns the structure of the object ("what is in variable a?")}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Named num [1:5] 10 22 33 22 40
+##  - attr(*, "names")= chr [1:5] "Andy" "Betty" "Claire" "Daniel" ...
+\end{verbatim}
+
+\hypertarget{math-operators}{%
+\section{Math Operators}\label{math-operators}}
+
+R knows all basic math operators and has a variety of functions to handle more advanced mathematical problems. One basic practical application of R in academic life is to use it as a sophisticated (and programmable) calculator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# basic arithmetic }
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum\_result }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{+}\DecValTok{2}
+\NormalTok{sum\_result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum\_result }\SpecialCharTok{{-}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4}\SpecialCharTok{*}\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{20}\SpecialCharTok{/}\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# order of operations}
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\SpecialCharTok{*}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{2}\SpecialCharTok{+}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{5}\SpecialCharTok{+}\DecValTok{5}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{+}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# work with variables}
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{20}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{a}\SpecialCharTok{/}\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# arithmetic with vectors}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2  8 12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{80}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{*}\NormalTok{ b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  10 160 480
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\SpecialCharTok{+}\NormalTok{ b }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11 44 86
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# other common math operators and functions}
+\DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(}\DecValTok{4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{log}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6931
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 22026
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{log}\NormalTok{(}\FunctionTok{exp}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# special numbers}
+\CommentTok{\# Euler\textquotesingle{}s number}
+\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.718
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pi}
+\NormalTok{pi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.142
+\end{verbatim}
+
+\hypertarget{basic-programming-concepts-in-r}{%
+\section{Basic programming concepts in R}\label{basic-programming-concepts-in-r}}
+
+\hypertarget{loops}{%
+\subsection{Loops}\label{loops}}
+
+A loop consists a sequence of code that is executed a specific number of times. How often the code `inside' the loop is executed depends on a (hopefully) clearly defined control statement. If we know in advance how often the code inside of the loop has to be executed, we typically write a so-called `for-loop'. If the number of iterations is not clearly known before executing the code, we typically write a so-called `while-loop'. The following subsections illustrate both of these concepts in R.
+
+\hypertarget{for-loops}{%
+\subsubsection{For-loops}\label{for-loops}}
+
+In simple terms, a for-loop tells the computer to execute a sequence of commands `for each case in a set of n cases'. The following flow-chart illustrates the concept.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.4\linewidth]{img/forloop} 
+
+}
+
+\caption{Foor-loop illustration.}\label{fig:for}
+\end{figure}
+
+
+
+For example, a for-loop could be used to sum up each of the elements in a numeric vector of fix length (thus the number of iterations is clearly defined). In plain English, the for-loop would state something like: ``Start with 0 as the current total value, for each element \(i\) of the \(n\) elements in the vector add the element's value to the current total value.'' Note how this logically implies that the loop will `stop' once the value of the last element in the vector is added to the total. Let's illustrate this in R. Take the numeric vector \texttt{c(1,2,3,4,5)}. A for loop to sum up all elements can be implemented as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# vector to be summed up}
+\NormalTok{numbers }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{4.8}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\CommentTok{\# initiate total}
+\NormalTok{total\_sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+\CommentTok{\# number of iterations}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(numbers)}
+\CommentTok{\# start loop}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{     total\_sum }\OtherTok{\textless{}{-}}\NormalTok{ total\_sum }\SpecialCharTok{+}\NormalTok{ numbers[i]}
+\NormalTok{\}}
+
+\CommentTok{\# check result}
+\NormalTok{total\_sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# compare with result of sum() function}
+\FunctionTok{sum}\NormalTok{(numbers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16.4
+\end{verbatim}
+
+\hypertarget{nested-for-loops}{%
+\subsubsection{Nested for-loops}\label{nested-for-loops}}
+
+In some situations a simple for-loop might not be sufficient. Within one sequence of commands there might be another sequence of commands that also has to be executed for a number of times each time the first sequence of commands is executed. In such a case we speak of a `nested for-loop'. We can illustrate this easily by extending the example of the numeric vector above to a matrix for which we want to sum up the values in each column. Building on the loop implemented above, we would say `for each column \texttt{j} of a given numeric matrix, execute the for-loop defined above'.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# matrix to be summed up}
+\NormalTok{numbers\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{4}\NormalTok{)}
+\NormalTok{numbers\_matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    6   11   16
+## [2,]    2    7   12   17
+## [3,]    3    8   13   18
+## [4,]    4    9   14   19
+## [5,]    5   10   15   20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# number of iterations for outer loop}
+\NormalTok{m }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(numbers\_matrix)}
+\CommentTok{\# number of iterations for inner loop}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(numbers\_matrix)}
+\CommentTok{\# start outer loop (loop over columns of matrix)}
+\ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{m) \{}
+     \CommentTok{\# start inner loop}
+     \CommentTok{\# initiate total}
+\NormalTok{     total\_sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+     \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{          total\_sum }\OtherTok{\textless{}{-}}\NormalTok{ total\_sum }\SpecialCharTok{+}\NormalTok{ numbers\_matrix[i, j]}
+\NormalTok{          \}}
+     \FunctionTok{print}\NormalTok{(total\_sum)}
+\NormalTok{     \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15
+## [1] 40
+## [1] 65
+## [1] 90
+\end{verbatim}
+
+\hypertarget{while-loop}{%
+\subsubsection{While-loop}\label{while-loop}}
+
+In a situation where a program has to repeatedly run a sequence of commands but we don't know in advance how many iterations we need in order to reach the intended goal, a while-loop can help. In simple terms, a while loop keeps executing a sequence of commands as long as a certain logical statement is true. The flow chart in Figure \ref{fig:while} illustrates this point.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.65\linewidth]{img/while_loop_own} 
+
+}
+
+\caption{While-loop illustration.}\label{fig:while}
+\end{figure}
+
+
+
+For example, a while-loop in plain English could state something like ``start with 0 as the total, add 1.12 to the total until the total is larger than 20.'' We can implement this in R as follows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# initiate starting value}
+\NormalTok{total }\OtherTok{\textless{}{-}} \DecValTok{0}
+\CommentTok{\# start loop}
+\ControlFlowTok{while}\NormalTok{ (total }\SpecialCharTok{\textless{}=} \DecValTok{20}\NormalTok{) \{}
+\NormalTok{     total }\OtherTok{\textless{}{-}}\NormalTok{ total }\SpecialCharTok{+} \FloatTok{1.12}
+\NormalTok{\}}
+
+\CommentTok{\# check the result}
+\NormalTok{total}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20.16
+\end{verbatim}
+
+\hypertarget{booleans-and-logical-statements}{%
+\subsection{Booleans and Logical Statements}\label{booleans-and-logical-statements}}
+
+Note that in order to write a meaningful while-loop we have to make use of a logical statement such as ``the value stored in the variable \texttt{total}is smaller or equal to \texttt{20}'' (\texttt{total\ \textless{}=\ 20}). A logical statement results in a `Boolean' data type. That is, a data type with the only two possible values \texttt{TRUE} or \texttt{FALSE} (\texttt{1} or \texttt{0}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{+}\DecValTok{2} \SpecialCharTok{==} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3}\SpecialCharTok{+}\DecValTok{3} \SpecialCharTok{==} \DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+Logical statements play an important role in fundamental programming concepts. In particular, they are crucial to make conditional statements (`if-statements') that build the control structure of a program, controlling the `direction' the program takes (given certain conditions).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{condition }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+\ControlFlowTok{if}\NormalTok{ (condition) \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is true!"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is false!"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "This is true!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{condition }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
+\ControlFlowTok{if}\NormalTok{ (condition) \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is true!"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+     \FunctionTok{print}\NormalTok{(}\StringTok{"This is false!"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "This is false!"
+\end{verbatim}
+
+\hypertarget{r-functions}{%
+\subsection{R Functions}\label{r-functions}}
+
+R programs heavily rely on functions. Conceptually, `functions' in R are very similar to what we know as `functions' in math (i.e., \(f:X \rightarrow Y\)). A function can thus, e.g., take a variable \(X\) as input and provide value \(Y\) as output. The actual calculation of \(Y\) based on \(X\) can be something as simple as \(2\times X = Y\). But, it could also be a very complex algorithm or an operation that does not have anything to do with numbers and arithmetic.\footnote{Of course, on the very low level, everything that happens in a microprocessor can in the end be expressed in some formal way using math (and involves binary numbers). However, the point here is that at the level we work with R, a function could simply process different text strings (i.e., stack them together). Thus for us as programmers, R functions do not necessarily have to do anything with arithmetic and numbers but could serve all kind of purposes, including the parsing of HTML code, etc.} As such, functions facilitate the re-usage of blocks of code that take care of a certain task. Functions take `parameter values' as input, process those values and `return' the result.
+
+When we open RStudio, all basic R functions are already loaded automatically. This means we can directly call them from the R-Console or by executing an R-Script. As R is made for data analysis and statistics, the basic functions loaded with R cover many aspects of tasks related to working with and analyzing data. Besides these basic functions, thousands of additional functions covering all kind of topics related to data analysis can be loaded additionally by installing the respective R-packages (\texttt{install.packages("PACKAGE-NAME")}), and then loading the packages with \texttt{library(PACKAGE-NAME)}. In addition, it is straightforward to define our own functions.
+
+\hypertarget{compute-the-mean}{%
+\subsubsection{Compute the mean}\label{compute-the-mean}}
+
+For example, suppose we want to compute the mean for several variables. We do so by summing up the elements in a vector with \texttt{sum()} and dividing the returned sum by the number of elements in the vector, which we get with \texttt{length()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# own implementation: use R{-}function for summing up the elements in a vector}
+\CommentTok{\# and getting the number of elements in a vector}
+\FunctionTok{sum}\NormalTok{(a) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.667
+\end{verbatim}
+
+Instead of repeatedly writing the above line of code in a script, we can once define a function called \texttt{my\_mean()} and then simply call this function to get the same result.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# define our own function to compute the mean, given a numeric vector}
+\NormalTok{my\_mean }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+\NormalTok{     x\_bar }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(x) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(x)}
+     \FunctionTok{return}\NormalTok{(x\_bar)}
+\NormalTok{\}}
+
+\CommentTok{\# test it}
+\FunctionTok{my\_mean}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# compare the result with the function delivered with the R installation}
+\FunctionTok{mean}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.667
+\end{verbatim}
+
+\hypertarget{data-structures-and-indeces}{%
+\section{Data Structures and Indeces}\label{data-structures-and-indeces}}
+
+\emph{R} provides different object classes to work with data. In simple terms, they differ with regard to how data is structured when stored in in the \emph{R} environment. This, in turn, defines how we can access specific data values. For example, if we store a bunch of numbers in a numeric vector, we can access each of these numbers individually, by telling \emph{R} to give us the first, second, \(n\)th element of this vector. If we store data in a two-dimensional object such as a matrix, we can access the data column-wise, row-wise, or cell-wise. Depending on the task, one or the other object class is preferable to store and work with data.
+
+\hypertarget{vectors-and-lists}{%
+\subsection{Vectors and Lists}\label{vectors-and-lists}}
+
+\hypertarget{vectors}{%
+\subsubsection{Vectors}\label{vectors}}
+
+A vector containing integer (or numeric) values:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# integer}
+\NormalTok{integer\_vector }\OtherTok{\textless{}{-}} \DecValTok{10}\SpecialCharTok{:}\DecValTok{20}
+\NormalTok{integer\_vector[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{integer\_vector[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11 12 13 14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# numeric}
+\NormalTok{numeric\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.4}\NormalTok{, }\FloatTok{5.6}\NormalTok{, }\FloatTok{7.2}\NormalTok{)}
+\NormalTok{numeric\_vector[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numeric\_vector[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4 5.6
+\end{verbatim}
+
+A string/character vector (`a vector containing text'):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# character vector}
+\NormalTok{string\_vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\NormalTok{string\_vector[}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b"
+\end{verbatim}
+
+\hypertarget{lists}{%
+\subsection{Lists}\label{lists}}
+
+A list can contain objects of differing data types and differing length in its elements, for example a numeric vector and a string\_vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# initiate a list containing vectors}
+\NormalTok{mylist }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{numbers =}\NormalTok{ numeric\_vector, }\AttributeTok{letters =}\NormalTok{ string\_vector)}
+\NormalTok{mylist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $numbers
+## [1] 1.4 5.6 7.2
+## 
+## $letters
+## [1] "a" "b" "c"
+\end{verbatim}
+
+We can access the elements of a list in various ways
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# with the element\textquotesingle{}s name}
+\NormalTok{mylist}\SpecialCharTok{$}\NormalTok{numbers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4 5.6 7.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylist[}\StringTok{"numbers"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $numbers
+## [1] 1.4 5.6 7.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# via the index}
+\NormalTok{mylist[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $numbers
+## [1] 1.4 5.6 7.2
+\end{verbatim}
+
+With \texttt{{[}{[}{]}{]}} we can access directly the content of the element
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylist[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.4 5.6 7.2
+\end{verbatim}
+
+Lists can also be nested (list of lists of lists\ldots.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mynestedlist }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{a =}\NormalTok{ mylist, }\AttributeTok{b =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)}
+\NormalTok{mynestedlist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $a
+## $a$numbers
+## [1] 1.4 5.6 7.2
+## 
+## $a$letters
+## [1] "a" "b" "c"
+## 
+## 
+## $b
+## [1] 1 2 3 4 5
+\end{verbatim}
+
+\hypertarget{matrices-and-data-frames}{%
+\subsection{Matrices and Data Frames}\label{matrices-and-data-frames}}
+
+When working on a data analysis task in R we typically deal with data in a two-dimensional (`table-like') format with observations in rows and variables describing these observations in columns. If all variables in a data set are of the same type we can store it in a \texttt{matrix}. In case the variables of a data set are of differing types, we typically store it in a \texttt{data.frame}.
+
+\hypertarget{matrices-and-arrays}{%
+\subsubsection{Matrices and Arrays}\label{matrices-and-arrays}}
+
+Matrices (or more generally, `arrays') are essentially vectors with an additional dimensionality definition.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# initiate an integer vector}
+\NormalTok{integer\_vector }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{8}
+\CommentTok{\# initiate a matrix based on this vector}
+\NormalTok{mymatrix }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(integer\_vector, }\AttributeTok{nrow =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The indexing of a matrix is very similar to vectors. However, within the \texttt{{[}{]}}-expression, we indicate the dimension we want to access with a comma.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# return the second row}
+\NormalTok{mymatrix[}\DecValTok{2}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# return the first two columns}
+\NormalTok{mymatrix[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    5
+## [2,]    2    6
+## [3,]    3    7
+## [4,]    4    8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# return the cell in the second row of the first column}
+\NormalTok{mymatrix[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\hypertarget{data-frames}{%
+\subsubsection{Data-Frames}\label{data-frames}}
+
+Data frames are the most common objects to store/work with data for analytics purposes in R. Most functions to import/load data into the R environment return the data in the form of a \texttt{data.frame}. Technically they are similar to a list with elements of identical length.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# data frames ("lists as columns")}
+\NormalTok{mydf }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Name =} \FunctionTok{c}\NormalTok{(}\StringTok{"Alice"}\NormalTok{, }\StringTok{"Betty"}\NormalTok{, }\StringTok{"Claire"}\NormalTok{), }\AttributeTok{Age =} \FunctionTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{45}\NormalTok{))}
+\NormalTok{mydf}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Name Age
+## 1  Alice  20
+## 2  Betty  30
+## 3 Claire  45
+\end{verbatim}
+
+We can access elements of the \texttt{data.frame} in various ways
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# select the age column}
+\NormalTok{mydf}\SpecialCharTok{$}\NormalTok{Age}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20 30 45
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydf[, }\StringTok{"Age"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20 30 45
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydf[, }\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20 30 45
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# select the second row}
+\NormalTok{mydf[}\DecValTok{2}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Name Age
+## 2 Betty  30
+\end{verbatim}
+
+\hypertarget{classes-and-data-structures}{%
+\subsection{Classes and Data Structures}\label{classes-and-data-structures}}
+
+When importing data to \emph{R}, using a new \emph{R}-package, or extracting data from web sources, it is imperative to understand how the data is structured in the \emph{R}-object (variable) one is working with. A lot of errors occur due to giving \emph{R} functions input in the wrong format/structure. Having a close look at how the data is stored in a variable that we want to work with further can help avoid such errors.\footnote{Note that basic \emph{R} functions as well as functions distributed via \emph{R} packages are usually very well documented (look up documentation with \texttt{help(FUNCTION-NAME)} or \texttt{?FUNCTION-NAME}. An important part of such documentations is what class the input arguments of a function must have and what the class of the returned object is. See, for example the documentation of \texttt{mean()} by typing \texttt{?mean} into the \emph{R}-console and hit enter.} The function \texttt{class()} returns the class(es) of an \emph{R} object:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# have a look at the class of the object}
+\FunctionTok{class}\NormalTok{(mydf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(mymatrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix" "array"
+\end{verbatim}
+
+To get a clear idea of the structure of data stored in a specific variable, we can call the function \texttt{str()} (for structure) with the object of interest as the only function argument. This is particularly helpful when dealing with a complex/nested data structure.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# have a closer look at the data structure}
+\FunctionTok{str}\NormalTok{(mydf)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    3 obs. of  2 variables:
+##  $ Name: chr  "Alice" "Betty" "Claire"
+##  $ Age : num  20 30 45
+\end{verbatim}
+
+\hypertarget{exercises-1}{%
+\section{Exercises}\label{exercises-1}}
+
+\hypertarget{exercise-a-write-a-sum-function}{%
+\subsection{Exercise A: Write a Sum Function}\label{exercise-a-write-a-sum-function}}
+
+In the code example above (introducing the for-loop) you see how we can use for loops to sum up numbers stored in a numeric vector. Use this code example and the following empty function construct to implement a function that takes a numeric vector as input and returns the sum of the vector's elements.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_sum }\OtherTok{\textless{}{-}} 
+     \ControlFlowTok{function}\NormalTok{(x)\{}
+          
+\NormalTok{     \}}
+\end{Highlighting}
+\end{Shaded}
+
+Test your function by comparing its output with the output of \texttt{sum()} (the pre-implemented sum function in R) when calling it with the same input.
+
+\hypertarget{exercise-b-robustness-and-warnings}{%
+\subsection{Exercise B: Robustness and Warnings}\label{exercise-b-robustness-and-warnings}}
+
+Once you have implemented and successfully tested \texttt{my\_sum()}, see what happens if you call it with the following vector as input
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numbers2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Why do we get an error? Investigate by comparing the vector \texttt{numbers} from the code example above with the new vector \texttt{numbers2} (the functions \texttt{str()} and \texttt{class()} might help you).
+
+Extend your \texttt{my\_sum()} function with a control statement that checks whether the input is of the right class for the function to work (Hint: \texttt{class(x)!="numeric"}). The goal is to make the function more robust to wrong input. That is, if the input is wrong, issue a warning but don't break down with an error. Use the following code for the warning message:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{warning}\NormalTok{(}\StringTok{"Wrong input! This function only accepts numeric or integer values!"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Test your enhanced sum function with the two input vectors \texttt{numbers} and \texttt{numbers2}.
+
+\hypertarget{exercise-c-standard-deviation-function}{%
+\subsection{Exercise C: Standard Deviation Function}\label{exercise-c-standard-deviation-function}}
+
+In the example above we've implemented our own R function to compute the mean, given a numeric vector with the help of already implemented R functions (\texttt{length()} and \texttt{sum()}; alternatively use your own \texttt{my\_sum()}). Now implement an R function called \texttt{my\_sd} that computes the standard deviation \(SD = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x_i - \overline{x})^2}\). (Hint: see the math operators section above for some of the ingredients).
+
+Test your implementation by comparing its results with the already implemented \texttt{sd()} function.
+
+\hypertarget{exercise-d-standard-error-function}{%
+\subsection{Exercise D: Standard Error Function}\label{exercise-d-standard-error-function}}
+
+Building on the function written in Exercise C, implement a function to compute (the estimate of) the sample mean standard error as defined here: \(\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}\). Hint: the idea is to use your own implementation (in Exercise C) to compute \(SD\) as a first step of your standard error function.
+
+Exercises C and D should illustrate how you can approach more complex problems by breaking them up into smaller problems and addressing each of these step-by-step. That is, when looking at the problem of computing \(\text{SE}_{\bar{x}} = \frac{SD}{\sqrt{n}}\), you see that computing \(SD\) is a part of the overall problem, which can be addressed separately.
+
+\hypertarget{exercise-e-t-test}{%
+\subsection{Exercise E: T-test}\label{exercise-e-t-test}}
+
+Implement a function for the one-sample \href{https://en.wikipedia.org/wiki/Student\%27s_t-test}{t-test}:
+\(t = \frac{\bar{x} - \mu_0}{\frac{SE}{\sqrt{n}}}\).
+
+\hypertarget{working-with-data}{%
+\chapter{Working with Data}\label{working-with-data}}
+
+\hypertarget{basics-loadingimporting-data}{%
+\section{Basics Loading/Importing Data}\label{basics-loadingimporting-data}}
+
+There are many ways to import data into \emph{R} from various sources. Here, we look at how to import data from the most common sources when you use \emph{R} for basic data analysis or econometric exercises.
+
+\hypertarget{loading-built-in-datasets}{%
+\section{Loading built-in datasets}\label{loading-built-in-datasets}}
+
+The basic \emph{R} installation provides some example data sets to try out \emph{R}'s statistics functions. In the introduction to visualization techniques with \emph{R} as well as in the statistics examples further below, we will rely on some of these datasets for sake of simplicity. Note that the usage of these simple datasets shipped with basic \emph{R} are very helpful when practicing/learning \emph{R} on your own. Many \emph{R} packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and online tutorials also use these datasets (see, for example the \href{https://ggplot2.tidyverse.org/}{ggplot2 documentation}). And, they are very useful when searching help on \href{https://stackoverflow.com/questions/tagged/r}{Stackoverflow} in the context of data analysis/manipulation with \emph{R}.\footnote{Properly posting a question on Stackoverflow requires the provision of a code example based on data that everybody can easily load and access.}
+
+In order to load such datasets, simply use the \texttt{data()}-function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+In this case, we load a dataset called \texttt{swiss}. After loading it, the data is stored in a variable of the same name as the dataset (here `\texttt{swiss}'). We can inspect it and have a look at the first few rows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# inspect the structure}
+\FunctionTok{str}\NormalTok{(swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    47 obs. of  6 variables:
+##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
+##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
+##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
+##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
+##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
+##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# look at the first few rows}
+\FunctionTok{head}\NormalTok{(swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Fertility Agriculture Examination
+## Courtelary        80.2        17.0          15
+## Delemont          83.1        45.1           6
+## Franches-Mnt      92.5        39.7           5
+## Moutier           85.8        36.5          12
+## Neuveville        76.9        43.5          17
+## Porrentruy        76.1        35.3           9
+##              Education Catholic Infant.Mortality
+## Courtelary          12     9.96             22.2
+## Delemont             9    84.84             22.2
+## Franches-Mnt         5    93.40             20.2
+## Moutier              7    33.77             20.3
+## Neuveville          15     5.16             20.6
+## Porrentruy           7    90.57             26.6
+\end{verbatim}
+
+To get a list of all the built-in datasets simply type \texttt{data()} into the console and hit enter. To get more information about a given dataset use the help function (for example, \texttt{?swiss})
+
+\hypertarget{importing-data-from-files}{%
+\subsection{Importing data from files}\label{importing-data-from-files}}
+
+In most cases of applying \emph{R} for econometrics and data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as `Comma Separated Values' (CSV). In economics one also frequently encounters data stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data (e.g., for your Master's Thesis) on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into \emph{R} (in some cases, additional packages have to be loaded, though).
+
+\hypertarget{comma-separated-values-csv}{%
+\subsubsection{Comma Separated Values (CSV)}\label{comma-separated-values-csv}}
+
+A most common format to store and transfer datasets is CSV. In this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the \texttt{swiss}-dataset would look like when stored in a CSV:
+
+\begin{verbatim}
+"","Fertility","Agriculture","Examination","Education","Catholic","Infant.Mortality"
+"Courtelary",80.2,17,15,12,9.96,22.2
+\end{verbatim}
+
+The function \texttt{read.csv()} imports such files from disk into \emph{R} (in the form of a \texttt{data.frame}). In this example the \texttt{swiss}-dataset is stored locally on our disk in the folder \texttt{data}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{swiss\_imported }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"data/swiss.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{spreadsheetsexcel}{%
+\subsubsection{Spreadsheets/Excel}\label{spreadsheetsexcel}}
+
+In order to read excel spreadsheets we need to install an additional \emph{R} package called \texttt{readxl}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install the package }
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then we load this additional package (`library') and use the package's \texttt{read\_excel()}-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called \texttt{swiss.xlsx}, again in a folder called \texttt{data}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load the package}
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\CommentTok{\# import data from a spreadsheet}
+\NormalTok{swiss\_imported }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"data/swiss.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{data-from-other-data-analysis-software}{%
+\subsubsection{Data from other data analysis software}\label{data-from-other-data-analysis-software}}
+
+The \emph{R} packages \texttt{foreign} and \texttt{haven} contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.
+
+In the following example we use \texttt{haven}`s \texttt{read\_spss()} function to import a version of the \texttt{swiss}-dataset stored in SPSS' \texttt{.sav}-format (again stored in the folder called \texttt{data}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install the package (if not yet installed):}
+\CommentTok{\# install.packages("haven")}
+
+\CommentTok{\# load the package}
+\FunctionTok{library}\NormalTok{(haven)}
+
+\CommentTok{\# read the data}
+\NormalTok{swiss\_imported }\OtherTok{\textless{}{-}} \FunctionTok{read\_spss}\NormalTok{(}\StringTok{"data/swiss.sav"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{data-visualization-with-r-ggplot2}{%
+\section{\texorpdfstring{Data Visualization with \emph{R} (\texttt{ggplot2})}{Data Visualization with R (ggplot2)}}\label{data-visualization-with-r-ggplot2}}
+
+\hypertarget{grammar-of-graphics}{%
+\subsection{`Grammar of Graphics'}\label{grammar-of-graphics}}
+
+A few years back, Leland Wilkinson (statistician and computer scientist) wrote an influential book called `The Grammar of Graphics'. In the book, Wilkinson develops a formal description (`grammar') of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. A key point of this grammar is that we can think of graphics as consisting of different design-layers and that we can build and describe them layer by layer (see \href{http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html}{here} for an illustration of this idea.
+
+This Grammar of Graphics framework got implemented in \emph{R} with the very prominent \texttt{ggplot2}-package, building on the very powerful \emph{R} graphics engine. The result is a user-friendly environment to visualize data with enormous potential to plot almost any graphic illustrating data.
+
+\hypertarget{ggplot2-basics}{%
+\section{\texorpdfstring{\texttt{ggplot2} basics}{ggplot2 basics}}\label{ggplot2-basics}}
+
+Using \texttt{ggplot2} to generate a basic plot in \emph{R} is quite simple. Basically, it involves three key points:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The data must be stored in a \texttt{data.frame}(preferrably in `long' format)
+\item
+  The starting point of a plot is always the function \texttt{ggplot()}
+\item
+  The first line of plot code declares the data and the `aesthetics' (what variables are mapped to the x-/y-axes):
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ my\_dataframe, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ xvar, }\AttributeTok{y=}\NormalTok{ yvar))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tutorial}{%
+\subsection{Tutorial}\label{tutorial}}
+
+In the following, we learn the basic functionality of \texttt{ggplot} by applying it to the \texttt{swiss} dataset introduced above.
+
+\hypertarget{loadingpreparing-the-data}{%
+\subsubsection{Loading/preparing the data}\label{loadingpreparing-the-data}}
+
+First, we load and inspect the data. Among other variables it contains information about the share of inhabitants of a given Swiss province who indicate to be of Catholic faith (and not Protestant).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load the *R* package}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\# load the data}
+\FunctionTok{data}\NormalTok{(swiss)}
+\CommentTok{\# get details about the data set}
+\CommentTok{\# ?swiss}
+\CommentTok{\# inspect the data}
+\FunctionTok{head}\NormalTok{(swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Fertility Agriculture Examination
+## Courtelary        80.2        17.0          15
+## Delemont          83.1        45.1           6
+## Franches-Mnt      92.5        39.7           5
+## Moutier           85.8        36.5          12
+## Neuveville        76.9        43.5          17
+## Porrentruy        76.1        35.3           9
+##              Education Catholic Infant.Mortality
+## Courtelary          12     9.96             22.2
+## Delemont             9    84.84             22.2
+## Franches-Mnt         5    93.40             20.2
+## Moutier              7    33.77             20.3
+## Neuveville          15     5.16             20.6
+## Porrentruy           7    90.57             26.6
+\end{verbatim}
+
+As we do not only want to use this continuous measure in the data visualization, we generate an additional factor variable called \texttt{Religion} which has either the value \texttt{\textquotesingle{}Protestant\textquotesingle{}} or \texttt{\textquotesingle{}Catholic\textquotesingle{}} depending on whether more then 50 percent of the inhabitants of the province are Catholics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# code province as \textquotesingle{}Catholic\textquotesingle{} if more than 50\% are catholic}
+\NormalTok{swiss}\SpecialCharTok{$}\NormalTok{Religion }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}Protestant\textquotesingle{}}
+\NormalTok{swiss}\SpecialCharTok{$}\NormalTok{Religion[}\DecValTok{50} \SpecialCharTok{\textless{}}\NormalTok{ swiss}\SpecialCharTok{$}\NormalTok{Catholic] }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}Catholic\textquotesingle{}}
+\NormalTok{swiss}\SpecialCharTok{$}\NormalTok{Religion }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(swiss}\SpecialCharTok{$}\NormalTok{Religion)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{data-and-aesthetics}{%
+\subsection{Data and aesthetics}\label{data-and-aesthetics}}
+
+We initiate the most basic plot with \texttt{ggplot()} by defining which data we want to use and in the plot aesthetics which variable we want to use on the x and y axes. Here, we are interested in whether the level of education beyond primary school in a given district is related with how well draftees from the same district do in a standardized army examination (\% of draftees that get the highest mark in the examination).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-45-1}
+
+As we have not yet defined according to what rules the data shall be visualized, all we get is an empty `canvas' and the axes (with the respective label and ticks indicating the range of the values).
+
+\hypertarget{geometries-the-type-of-plot}{%
+\subsection{Geometries (\textasciitilde the type of plot)}\label{geometries-the-type-of-plot}}
+
+To actually plot the data we have to define the `geometries', defining according to which function the data should be mapped/visualized. In other words, geometries define which `type of plot' we use to visualize the data (histogram, lines, points, etc.). In the example code below, we use \texttt{geom\_point()} to get a simple point plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-46-1}
+
+The result indicates that there is a positive correlation between the level of education and how well draftees do in the examination. We want to better understand this correlation. Particularly, what other factors could drive this picture.
+
+\hypertarget{facets}{%
+\subsubsection{Facets}\label{facets}}
+
+According to a popular thesis, the protestant reformation and the spread of the protestant movement in Europe was driving the development of compulsory schooling. It would thus be reasonable to hypothesize that the picture we see is partly driven by differences in schooling between Catholic and Protestant districts. In order to make such differences visible in the data, we use `facets' to show the same plot again, but this time separating observations from Catholic and Protestant districts:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-47-1}
+
+Draftees from protestant districts tend to do generally better (which might be an indication of better primary schools, or a generally stronger focus on scholastic achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of districts.
+
+\hypertarget{additional-layers-and-statistics}{%
+\subsubsection{Additional layers and statistics}\label{additional-layers-and-statistics}}
+
+Let's visualize this relationship more clearly by drawing trend-lines through the scatter diagrams. Once with the non-parametric `loess'-approach and once forcing a linear model on the relationship between the two variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+     \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}loess\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-48-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+     \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-49-1}
+
+\hypertarget{additional-aesthetics}{%
+\subsubsection{Additional aesthetics}\label{additional-aesthetics}}
+
+Knowing a little bit about Swiss history and geography, we realize that particularly rural cantons in mountain regions remained Catholic during the reformation. In addition, cantonal school systems historically took into account that children have to help their parents on the farms during the summers. Thus in some rural cantons schools were closed from spring until autumn. Hence, we might want to indicate in the plot which point refers to a predominantly agricultural district. We use the aesthetics of the point geometry to color the points according to the `\texttt{Agriculture}'-variable (the \% of males involved in agriculture as occupation).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Agriculture)) }\SpecialCharTok{+}
+     \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-50-1}
+
+The resulting picture is in line with what we have expected. Overall, the districts with a lower share of occupation in agriculture tend to have rather higher levels of education as well as higher achievements in the examination.
+
+\hypertarget{coordinates}{%
+\subsubsection{Coordinates}\label{coordinates}}
+
+Finally, there are countless options to further refine the plot. For example, we can easily change the orientation/coordinates of the plot:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Agriculture)) }\SpecialCharTok{+}
+     \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion) }\SpecialCharTok{+}
+     \FunctionTok{coord\_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-51-1}
+
+\hypertarget{themes-fine-tuning-the-plot}{%
+\subsubsection{Themes: Fine-tuning the plot}\label{themes-fine-tuning-the-plot}}
+
+In addition, the \texttt{theme()}-function allows to change almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Agriculture)) }\SpecialCharTok{+}
+     \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion) }\SpecialCharTok{+}
+     \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\AttributeTok{axis.text=}\FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{12}\NormalTok{) ) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-52-1}
+
+Moreover, several theme-templates offer ready-made designs for plots:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Agriculture)) }\SpecialCharTok{+}
+     \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion) }\SpecialCharTok{+}
+     \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-53-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ swiss, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Education, }\AttributeTok{y =}\NormalTok{ Examination)) }\SpecialCharTok{+} 
+     \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Agriculture)) }\SpecialCharTok{+}
+     \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{\textquotesingle{}lm\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+     \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Religion) }\SpecialCharTok{+}
+     \FunctionTok{theme\_dark}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics[width=0.85\linewidth]{r_intro_files/figure-latex/unnamed-chunk-54-1}
+
+\hypertarget{basic-statistics-and-econometrics-with-r}{%
+\section{\texorpdfstring{Basic Statistics and Econometrics with \emph{R}}{Basic Statistics and Econometrics with R}}\label{basic-statistics-and-econometrics-with-r}}
+
+In the previous part we have learned how to implement basic statistics functions in \emph{R}, as well as notices that for most of these statistics \emph{R} already has a build-in function.
+
+For example, mean and median:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# initiate sample}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{33}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+\FunctionTok{names}\NormalTok{(a) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Andy"}\NormalTok{, }\StringTok{"Betty"}\NormalTok{, }\StringTok{"Claire"}\NormalTok{, }\StringTok{"Daniel"}\NormalTok{, }\StringTok{"Eva"}\NormalTok{)}
+
+\CommentTok{\# compute the mean}
+\FunctionTok{mean}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# compute the median}
+\FunctionTok{median}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 22
+\end{verbatim}
+
+\ldots as well as different measures of variability,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{range}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10 40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 132.8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11.52
+\end{verbatim}
+
+and test statistics such as the t-test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# define size of sample}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{100}
+\CommentTok{\# draw the random sample from a normal distribution with mean 10 and sd 2}
+\NormalTok{sample }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(n, }\AttributeTok{mean =} \DecValTok{10}\NormalTok{, }\AttributeTok{sd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Test H0: mean of population = 10 }
+\FunctionTok{t.test}\NormalTok{(sample, }\AttributeTok{mu =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  sample
+## t = 1.5, df = 99, p-value = 0.1
+## alternative hypothesis: true mean is not equal to 10
+## 95 percent confidence interval:
+##   9.895 10.749
+## sample estimates:
+## mean of x 
+##     10.32
+\end{verbatim}
+
+\hypertarget{regression-analysis-with-r}{%
+\subsection{\texorpdfstring{Regression analysis with \emph{R}}{Regression analysis with R}}\label{regression-analysis-with-r}}
+
+Finally, \emph{R} and additional \emph{R} packages offer functions for almost all models and tests in modern applied econometrics. While the syntax and return values of these functions are note 100\% consistent (due to the fact that many different authors contributed some of these functions), applying them is usually quite similar. Functions for econometric models typically have the two main parameters \texttt{data} (the dataset to use in the estimation, in \texttt{data.frame}-format) and \texttt{formula} (a symbolic description of the model to be fitted, following a defined convention). Typically, the following three steps are involved when running regressions in \emph{R} (assuming the data is already loaded and prepared):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In \texttt{formula}, we define the model we want to fit as an object of class `formula'. For example, we want to regress \texttt{Examination} on \texttt{Education} with the \texttt{swiss}-dataset used above.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model1 }\OtherTok{\textless{}{-}}\NormalTok{ Examination}\SpecialCharTok{\textasciitilde{}}\NormalTok{Education}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Fit the model with the respective estimator. Here we use \texttt{lm()} the \emph{R} workhorse for linear models to fit the model with OLS:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ model1, }\AttributeTok{data =}\NormalTok{ swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Get summary statistics with the generic \texttt{summary()}. In the case of an object of class \texttt{lm} (the output of \texttt{lm()}), this amounts to the typical coefficient t-statistics an p-values shown in regression tables:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = model1, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -10.932  -4.763  -0.184   3.891  12.498 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  10.1275     1.2859    7.88  5.2e-10 ***
+## Education     0.5795     0.0885    6.55  4.8e-08 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.77 on 45 degrees of freedom
+## Multiple R-squared:  0.488,  Adjusted R-squared:  0.476 
+## F-statistic: 42.9 on 1 and 45 DF,  p-value: 4.81e-08
+\end{verbatim}
+
+\hypertarget{linear-model}{%
+\subsection{Linear model}\label{linear-model}}
+
+Putting the pieces together, we can write a simple script to analyse the \texttt{swiss}-dataset (in spirit of the data visualization above):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load data}
+\FunctionTok{data}\NormalTok{(swiss)}
+
+\CommentTok{\# linear regression with one variable}
+\CommentTok{\# estimate coefficients}
+\NormalTok{model\_fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Examination}\SpecialCharTok{\textasciitilde{}}\NormalTok{Education, }\AttributeTok{data =}\NormalTok{ swiss)}
+\CommentTok{\# t{-}tests of coefficients (and additional statistics)}
+\FunctionTok{summary}\NormalTok{(model\_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Examination ~ Education, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -10.932  -4.763  -0.184   3.891  12.498 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  10.1275     1.2859    7.88  5.2e-10 ***
+## Education     0.5795     0.0885    6.55  4.8e-08 ***
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.77 on 45 degrees of freedom
+## Multiple R-squared:  0.488,  Adjusted R-squared:  0.476 
+## F-statistic: 42.9 on 1 and 45 DF,  p-value: 4.81e-08
+\end{verbatim}
+
+Specifying the linear model differently can be done by simply changing the formula of the model. For example, we might want to control for the share of agricultural occupation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# multiple linear regression}
+\CommentTok{\# estimate coefficients}
+\NormalTok{model\_fit2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Examination}\SpecialCharTok{\textasciitilde{}}\NormalTok{Education }\SpecialCharTok{+}\NormalTok{ Catholic }\SpecialCharTok{+}\NormalTok{ Agriculture, }\AttributeTok{data =}\NormalTok{ swiss)}
+\CommentTok{\# t{-}tests of coefficients (and additional statistics)}
+\FunctionTok{summary}\NormalTok{(model\_fit2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Examination ~ Education + Catholic + Agriculture, 
+##     data = swiss)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -9.315 -2.831 -0.349  3.349  7.417 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  18.5370     2.6371    7.03  1.2e-08 ***
+## Education     0.4242     0.0868    4.89  1.5e-05 ***
+## Catholic     -0.0798     0.0168   -4.75  2.3e-05 ***
+## Agriculture  -0.0676     0.0396   -1.71    0.095 .  
+## ---
+## Signif. codes:  
+## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.3 on 43 degrees of freedom
+## Multiple R-squared:  0.728,  Adjusted R-squared:  0.709 
+## F-statistic: 38.3 on 3 and 43 DF,  p-value: 3.21e-12
+\end{verbatim}
+
+\hypertarget{other-econometric-models-and-useful-regression-packages}{%
+\subsection{Other econometric models and useful regression packages}\label{other-econometric-models-and-useful-regression-packages}}
+
+Various additional packages provide all kind of functions to estimate diverse economietric models. Many generalized linear models can be fitted with the \texttt{glm()}-function (\texttt{formula} and \texttt{data} used as in \texttt{lm()}):
+
+\begin{itemize}
+\tightlist
+\item
+  Probit model: \texttt{glm(...,\ family\ =\ binomial(link\ =\ "probit"))}.
+\item
+  Logit model: \texttt{glm(...,\ family\ =\ "binomial")}.
+\item
+  Poisson regression (count data): \texttt{glm(...,\ family="poisson")}.
+\end{itemize}
+
+Other frequently used packages for econometric regression analysis:
+
+\begin{itemize}
+\tightlist
+\item
+  Panel data econometrics: package \texttt{plm}, \texttt{fixest}, \texttt{lfe}.
+\item
+  Time-series econometrics: package \texttt{tseries}.
+\item
+  Basic IV regression: \texttt{ivreg()} in package \texttt{AER}.
+\item
+  Generalized methods of moments: package \texttt{gmm}.
+\item
+  Generalized additive models: package \texttt{gam}.
+\item
+  Lasso regression: package \texttt{glmnet}.
+\item
+  Survival analysis: package \texttt{survival}.
+\end{itemize}
+
+See also the \href{https://cran.r-project.org/web/views/Econometrics.html}{CRAN Econometrics Task View}.
+
+\hypertarget{regression-tables}{%
+\subsection{Regression tables}\label{regression-tables}}
+
+Economists typically present regression results in detailed regression tables, with regression coefficients in rows and model specifications in columns. The package \texttt{stargazer} provides some functions to generate such tables very easily for outputs of the most common regression functions (\texttt{lm()}, \texttt{glm()}, etc.):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load packages}
+\FunctionTok{library}\NormalTok{(stargazer)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# print regression results as text}
+\FunctionTok{stargazer}\NormalTok{(model\_fit, model\_fit2, }\AttributeTok{type =} \StringTok{"text"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## =================================================================
+##                                  Dependent variable:             
+##                     ---------------------------------------------
+##                                      Examination                 
+##                              (1)                    (2)          
+## -----------------------------------------------------------------
+## Education                  0.579***               0.424***       
+##                            (0.089)                (0.087)        
+##                                                                  
+## Catholic                                         -0.080***       
+##                                                   (0.017)        
+##                                                                  
+## Agriculture                                       -0.068*        
+##                                                   (0.040)        
+##                                                                  
+## Constant                  10.130***              18.540***       
+##                            (1.286)                (2.637)        
+##                                                                  
+## -----------------------------------------------------------------
+## Observations                  47                     47          
+## R2                          0.488                  0.728         
+## Adjusted R2                 0.476                  0.709         
+## Residual Std. Error    5.773 (df = 45)        4.304 (df = 43)    
+## F Statistic         42.850*** (df = 1; 45) 38.350*** (df = 3; 43)
+## =================================================================
+## Note:                                 *p<0.1; **p<0.05; ***p<0.01
+\end{verbatim}
+
+Alternatively the regression table can be directly generated as LaTeX table or as HTML table, which can be parsed and rendered for an html document or pdf document, when generated as part of an Rmd-file (such as this lecture notes).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# conditional on the output format of the whole document,}
+\CommentTok{\# generate and render a HTML or a LaTeX table.}
+\ControlFlowTok{if}\NormalTok{ (knitr}\SpecialCharTok{::}\FunctionTok{is\_latex\_output}\NormalTok{()) \{}
+     \FunctionTok{stargazer}\NormalTok{(model\_fit, model\_fit2, }\AttributeTok{type =} \StringTok{"latex"}\NormalTok{,}
+               \AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{table.placement =} \StringTok{"H"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+     \FunctionTok{stargazer}\NormalTok{(model\_fit, model\_fit2, }\AttributeTok{type =} \StringTok{"html"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[H] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-3} 
+\\[-1.8ex] & \multicolumn{2}{c}{Examination} \\ 
+\\[-1.8ex] & (1) & (2)\\ 
+\hline \\[-1.8ex] 
+ Education & 0.579$^{***}$ & 0.424$^{***}$ \\ 
+  & (0.089) & (0.087) \\ 
+  & & \\ 
+ Catholic &  & $-$0.080$^{***}$ \\ 
+  &  & (0.017) \\ 
+  & & \\ 
+ Agriculture &  & $-$0.068$^{*}$ \\ 
+  &  & (0.040) \\ 
+  & & \\ 
+ Constant & 10.130$^{***}$ & 18.540$^{***}$ \\ 
+  & (1.286) & (2.637) \\ 
+  & & \\ 
+\hline \\[-1.8ex] 
+Observations & 47 & 47 \\ 
+R$^{2}$ & 0.488 & 0.728 \\ 
+Adjusted R$^{2}$ & 0.476 & 0.709 \\ 
+Residual Std. Error & 5.773 (df = 45) & 4.304 (df = 43) \\ 
+F Statistic & 42.850$^{***}$ (df = 1; 45) & 38.350$^{***}$ (df = 3; 43) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+  \bibliography{references/rintro.bib,references/packages.bib}
+
+\backmatter
+\printindex
+
+\end{document}

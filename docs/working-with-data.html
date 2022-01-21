@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Working with Data | A Brief Introduction to Programming with R</title>
+  <meta name="description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Working with Data | A Brief Introduction to Programming with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/while_loop_own_black.png" />
+  <meta property="og:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Working with Data | A Brief Introduction to Programming with R" />
+  
+  <meta name="twitter:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  <meta name="twitter:image" content="img/while_loop_own_black.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="first-steps-with-r.html"/>
+
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programming with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html"><i class="fa fa-check"></i><b>1</b> Why learn to program (now)?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <em>R</em>?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-data-language"><i class="fa fa-check"></i><b>1.1.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="1.1.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>1.1.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="1.1.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#free-open-source-large-community"><i class="fa fa-check"></i><b>1.1.3</b> Free, open source, large community</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-tools-rrstudio"><i class="fa fa-check"></i><b>1.2</b> The tools: <em>R</em>/RStudio</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-r-console"><i class="fa fa-check"></i><b>1.2.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="1.2.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#r-scripts"><i class="fa fa-check"></i><b>1.2.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="1.2.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#r-environment"><i class="fa fa-check"></i><b>1.2.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="1.2.4" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#file-browser"><i class="fa fa-check"></i><b>1.2.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercise-a-setting-up-a-working-environment"><i class="fa fa-check"></i><b>1.3.1</b> Exercise A: Setting up a Working Environment</a></li>
+<li class="chapter" data-level="1.3.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercise-b-r-scripts"><i class="fa fa-check"></i><b>1.3.2</b> Exercise B: <em>R</em> Scripts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html"><i class="fa fa-check"></i><b>2</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1</b> Variables and Vectors</a></li>
+<li class="chapter" data-level="2.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#math-operators"><i class="fa fa-check"></i><b>2.2</b> Math Operators</a></li>
+<li class="chapter" data-level="2.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.3</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#loops"><i class="fa fa-check"></i><b>2.3.1</b> Loops</a></li>
+<li class="chapter" data-level="2.3.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.3.2</b> Booleans and Logical Statements</a></li>
+<li class="chapter" data-level="2.3.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#r-functions"><i class="fa fa-check"></i><b>2.3.3</b> R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#data-structures-and-indeces"><i class="fa fa-check"></i><b>2.4</b> Data Structures and Indeces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#vectors-and-lists"><i class="fa fa-check"></i><b>2.4.1</b> Vectors and Lists</a></li>
+<li class="chapter" data-level="2.4.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#lists"><i class="fa fa-check"></i><b>2.4.2</b> Lists</a></li>
+<li class="chapter" data-level="2.4.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#matrices-and-data-frames"><i class="fa fa-check"></i><b>2.4.3</b> Matrices and Data Frames</a></li>
+<li class="chapter" data-level="2.4.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#classes-and-data-structures"><i class="fa fa-check"></i><b>2.4.4</b> Classes and Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercises-1"><i class="fa fa-check"></i><b>2.5</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-a-write-a-sum-function"><i class="fa fa-check"></i><b>2.5.1</b> Exercise A: Write a Sum Function</a></li>
+<li class="chapter" data-level="2.5.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-b-robustness-and-warnings"><i class="fa fa-check"></i><b>2.5.2</b> Exercise B: Robustness and Warnings</a></li>
+<li class="chapter" data-level="2.5.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-c-standard-deviation-function"><i class="fa fa-check"></i><b>2.5.3</b> Exercise C: Standard Deviation Function</a></li>
+<li class="chapter" data-level="2.5.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-d-standard-error-function"><i class="fa fa-check"></i><b>2.5.4</b> Exercise D: Standard Error Function</a></li>
+<li class="chapter" data-level="2.5.5" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-e-t-test"><i class="fa fa-check"></i><b>2.5.5</b> Exercise E: T-test</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>3</b> Working with Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="working-with-data.html"><a href="working-with-data.html#basics-loadingimporting-data"><i class="fa fa-check"></i><b>3.1</b> Basics Loading/Importing Data</a></li>
+<li class="chapter" data-level="3.2" data-path="working-with-data.html"><a href="working-with-data.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>3.2</b> Loading built-in datasets</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="working-with-data.html"><a href="working-with-data.html#importing-data-from-files"><i class="fa fa-check"></i><b>3.2.1</b> Importing data from files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="working-with-data.html"><a href="working-with-data.html#data-visualization-with-r-ggplot2"><i class="fa fa-check"></i><b>3.3</b> Data Visualization with <em>R</em> (<code>ggplot2</code>)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="working-with-data.html"><a href="working-with-data.html#grammar-of-graphics"><i class="fa fa-check"></i><b>3.3.1</b> ‘Grammar of Graphics’</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="working-with-data.html"><a href="working-with-data.html#ggplot2-basics"><i class="fa fa-check"></i><b>3.4</b> <code>ggplot2</code> basics</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="working-with-data.html"><a href="working-with-data.html#tutorial"><i class="fa fa-check"></i><b>3.4.1</b> Tutorial</a></li>
+<li class="chapter" data-level="3.4.2" data-path="working-with-data.html"><a href="working-with-data.html#data-and-aesthetics"><i class="fa fa-check"></i><b>3.4.2</b> Data and aesthetics</a></li>
+<li class="chapter" data-level="3.4.3" data-path="working-with-data.html"><a href="working-with-data.html#geometries-the-type-of-plot"><i class="fa fa-check"></i><b>3.4.3</b> Geometries (~the type of plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="working-with-data.html"><a href="working-with-data.html#basic-statistics-and-econometrics-with-r"><i class="fa fa-check"></i><b>3.5</b> Basic Statistics and Econometrics with <em>R</em></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="working-with-data.html"><a href="working-with-data.html#regression-analysis-with-r"><i class="fa fa-check"></i><b>3.5.1</b> Regression analysis with <em>R</em></a></li>
+<li class="chapter" data-level="3.5.2" data-path="working-with-data.html"><a href="working-with-data.html#linear-model"><i class="fa fa-check"></i><b>3.5.2</b> Linear model</a></li>
+<li class="chapter" data-level="3.5.3" data-path="working-with-data.html"><a href="working-with-data.html#other-econometric-models-and-useful-regression-packages"><i class="fa fa-check"></i><b>3.5.3</b> Other econometric models and useful regression packages</a></li>
+<li class="chapter" data-level="3.5.4" data-path="working-with-data.html"><a href="working-with-data.html#regression-tables"><i class="fa fa-check"></i><b>3.5.4</b> Regression tables</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Brief Introduction to Programming with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-data" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Working with Data</h1>
+<div id="basics-loadingimporting-data" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Basics Loading/Importing Data</h2>
+<p>There are many ways to import data into <em>R</em> from various sources. Here, we look at how to import data from the most common sources when you use <em>R</em> for basic data analysis or econometric exercises.</p>
+</div>
+<div id="loading-built-in-datasets" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Loading built-in datasets</h2>
+<p>The basic <em>R</em> installation provides some example data sets to try out <em>R</em>’s statistics functions. In the introduction to visualization techniques with <em>R</em> as well as in the statistics examples further below, we will rely on some of these datasets for sake of simplicity. Note that the usage of these simple datasets shipped with basic <em>R</em> are very helpful when practicing/learning <em>R</em> on your own. Many <em>R</em> packages use these datasets over and over again in their documentation and examples. Moreover, extensive documentations and online tutorials also use these datasets (see, for example the <a href="https://ggplot2.tidyverse.org/">ggplot2 documentation</a>). And, they are very useful when searching help on <a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> in the context of data analysis/manipulation with <em>R</em>.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>In order to load such datasets, simply use the <code>data()</code>-function:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="working-with-data.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span></code></pre></div>
+<p>In this case, we load a dataset called <code>swiss</code>. After loading it, the data is stored in a variable of the same name as the dataset (here ‘<code>swiss</code>’). We can inspect it and have a look at the first few rows:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="working-with-data.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the structure</span></span>
+<span id="cb127-2"><a href="working-with-data.html#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(swiss)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    47 obs. of  6 variables:
+##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
+##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
+##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
+##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
+##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
+##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="working-with-data.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the first few rows</span></span>
+<span id="cb129-2"><a href="working-with-data.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss)</span></code></pre></div>
+<pre><code>##              Fertility Agriculture Examination
+## Courtelary        80.2        17.0          15
+## Delemont          83.1        45.1           6
+## Franches-Mnt      92.5        39.7           5
+## Moutier           85.8        36.5          12
+## Neuveville        76.9        43.5          17
+## Porrentruy        76.1        35.3           9
+##              Education Catholic Infant.Mortality
+## Courtelary          12     9.96             22.2
+## Delemont             9    84.84             22.2
+## Franches-Mnt         5    93.40             20.2
+## Moutier              7    33.77             20.3
+## Neuveville          15     5.16             20.6
+## Porrentruy           7    90.57             26.6</code></pre>
+<p>To get a list of all the built-in datasets simply type <code>data()</code> into the console and hit enter. To get more information about a given dataset use the help function (for example, <code>?swiss</code>)</p>
+<div id="importing-data-from-files" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Importing data from files</h3>
+<p>In most cases of applying <em>R</em> for econometrics and data analysis, students and researchers rely on importing data from files stored on the hard disk. Typically, such datasets are stored in a text-file-format such as ‘Comma Separated Values’ (CSV). In economics one also frequently encounters data stored in specific formats of commercial statistics/data analysis packages such as SPSS or STATA. Moreover, when collecting data (e.g., for your Master’s Thesis) on your own, you might rely on a spreadsheet tool like Microsoft Excel. Data from all of these formats can quite easily be imported into <em>R</em> (in some cases, additional packages have to be loaded, though).</p>
+<div id="comma-separated-values-csv" class="section level4" number="3.2.1.1">
+<h4><span class="header-section-number">3.2.1.1</span> Comma Separated Values (CSV)</h4>
+<p>A most common format to store and transfer datasets is CSV. In this format data values of one observation are stored in one row of a text file, while commas separate the variables/columns. For example, the following code-block shows how the first two rows of the <code>swiss</code>-dataset would look like when stored in a CSV:</p>
+<pre><code>&quot;&quot;,&quot;Fertility&quot;,&quot;Agriculture&quot;,&quot;Examination&quot;,&quot;Education&quot;,&quot;Catholic&quot;,&quot;Infant.Mortality&quot;
+&quot;Courtelary&quot;,80.2,17,15,12,9.96,22.2</code></pre>
+<p>The function <code>read.csv()</code> imports such files from disk into <em>R</em> (in the form of a <code>data.frame</code>). In this example the <code>swiss</code>-dataset is stored locally on our disk in the folder <code>data</code>:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="working-with-data.html#cb132-1" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/swiss.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="spreadsheetsexcel" class="section level4" number="3.2.1.2">
+<h4><span class="header-section-number">3.2.1.2</span> Spreadsheets/Excel</h4>
+<p>In order to read excel spreadsheets we need to install an additional <em>R</em> package called <code>readxl</code>.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="working-with-data.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package </span></span>
+<span id="cb133-2"><a href="working-with-data.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+<p>Then we load this additional package (‘library’) and use the package’s <code>read_excel()</code>-function to import data from an excel-sheet. In the example below, the same data as above is stored in an excel-sheet called <code>swiss.xlsx</code>, again in a folder called <code>data</code>.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="working-with-data.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
+<span id="cb134-2"><a href="working-with-data.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb134-3"><a href="working-with-data.html#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="working-with-data.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data from a spreadsheet</span></span>
+<span id="cb134-5"><a href="working-with-data.html#cb134-5" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/swiss.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="data-from-other-data-analysis-software" class="section level4" number="3.2.1.3">
+<h4><span class="header-section-number">3.2.1.3</span> Data from other data analysis software</h4>
+<p>The <em>R</em> packages <code>foreign</code> and <code>haven</code> contain functions to import data from formats used in other statistics/data analysis software, such as SPSS and STATA.</p>
+<p>In the following example we use <code>haven</code>‘s <code>read_spss()</code> function to import a version of the <code>swiss</code>-dataset stored in SPSS’ <code>.sav</code>-format (again stored in the folder called <code>data</code>).</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="working-with-data.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package (if not yet installed):</span></span>
+<span id="cb135-2"><a href="working-with-data.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;haven&quot;)</span></span>
+<span id="cb135-3"><a href="working-with-data.html#cb135-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-4"><a href="working-with-data.html#cb135-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the package</span></span>
+<span id="cb135-5"><a href="working-with-data.html#cb135-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb135-6"><a href="working-with-data.html#cb135-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-7"><a href="working-with-data.html#cb135-7" aria-hidden="true" tabindex="-1"></a><span class="co"># read the data</span></span>
+<span id="cb135-8"><a href="working-with-data.html#cb135-8" aria-hidden="true" tabindex="-1"></a>swiss_imported <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;data/swiss.sav&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="data-visualization-with-r-ggplot2" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Data Visualization with <em>R</em> (<code>ggplot2</code>)</h2>
+<div id="grammar-of-graphics" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> ‘Grammar of Graphics’</h3>
+<p>A few years back, Leland Wilkinson (statistician and computer scientist) wrote an influential book called ‘The Grammar of Graphics.’ In the book, Wilkinson develops a formal description (‘grammar’) of graphics used in statistics, illustrating how different types of plots (bar plot, histogram, etc.) are special cases of an underlying framework. A key point of this grammar is that we can think of graphics as consisting of different design-layers and that we can build and describe them layer by layer (see <a href="http://bloggotype.blogspot.ch/2016/08/holiday-notes2-grammar-of-graphics.html">here</a> for an illustration of this idea.</p>
+<p>This Grammar of Graphics framework got implemented in <em>R</em> with the very prominent <code>ggplot2</code>-package, building on the very powerful <em>R</em> graphics engine. The result is a user-friendly environment to visualize data with enormous potential to plot almost any graphic illustrating data.</p>
+</div>
+</div>
+<div id="ggplot2-basics" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> <code>ggplot2</code> basics</h2>
+<p>Using <code>ggplot2</code> to generate a basic plot in <em>R</em> is quite simple. Basically, it involves three key points:</p>
+<ol style="list-style-type: decimal">
+<li>The data must be stored in a <code>data.frame</code>(preferrably in ‘long’ format)</li>
+<li>The starting point of a plot is always the function <code>ggplot()</code></li>
+<li>The first line of plot code declares the data and the ‘aesthetics’ (what variables are mapped to the x-/y-axes):</li>
+</ol>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="working-with-data.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> my_dataframe, <span class="fu">aes</span>(<span class="at">x=</span> xvar, <span class="at">y=</span> yvar))</span></code></pre></div>
+<div id="tutorial" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Tutorial</h3>
+<p>In the following, we learn the basic functionality of <code>ggplot</code> by applying it to the <code>swiss</code> dataset introduced above.</p>
+<div id="loadingpreparing-the-data" class="section level4" number="3.4.1.1">
+<h4><span class="header-section-number">3.4.1.1</span> Loading/preparing the data</h4>
+<p>First, we load and inspect the data. Among other variables it contains information about the share of inhabitants of a given Swiss province who indicate to be of Catholic faith (and not Protestant).</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="working-with-data.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the *R* package</span></span>
+<span id="cb137-2"><a href="working-with-data.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb137-3"><a href="working-with-data.html#cb137-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb137-4"><a href="working-with-data.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb137-5"><a href="working-with-data.html#cb137-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get details about the data set</span></span>
+<span id="cb137-6"><a href="working-with-data.html#cb137-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ?swiss</span></span>
+<span id="cb137-7"><a href="working-with-data.html#cb137-7" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the data</span></span>
+<span id="cb137-8"><a href="working-with-data.html#cb137-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss)</span></code></pre></div>
+<pre><code>##              Fertility Agriculture Examination
+## Courtelary        80.2        17.0          15
+## Delemont          83.1        45.1           6
+## Franches-Mnt      92.5        39.7           5
+## Moutier           85.8        36.5          12
+## Neuveville        76.9        43.5          17
+## Porrentruy        76.1        35.3           9
+##              Education Catholic Infant.Mortality
+## Courtelary          12     9.96             22.2
+## Delemont             9    84.84             22.2
+## Franches-Mnt         5    93.40             20.2
+## Moutier              7    33.77             20.3
+## Neuveville          15     5.16             20.6
+## Porrentruy           7    90.57             26.6</code></pre>
+<p>As we do not only want to use this continuous measure in the data visualization, we generate an additional factor variable called <code>Religion</code> which has either the value <code>'Protestant'</code> or <code>'Catholic'</code> depending on whether more then 50 percent of the inhabitants of the province are Catholics.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="working-with-data.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code province as &#39;Catholic&#39; if more than 50% are catholic</span></span>
+<span id="cb139-2"><a href="working-with-data.html#cb139-2" aria-hidden="true" tabindex="-1"></a>swiss<span class="sc">$</span>Religion <span class="ot">&lt;-</span> <span class="st">&#39;Protestant&#39;</span></span>
+<span id="cb139-3"><a href="working-with-data.html#cb139-3" aria-hidden="true" tabindex="-1"></a>swiss<span class="sc">$</span>Religion[<span class="dv">50</span> <span class="sc">&lt;</span> swiss<span class="sc">$</span>Catholic] <span class="ot">&lt;-</span> <span class="st">&#39;Catholic&#39;</span></span>
+<span id="cb139-4"><a href="working-with-data.html#cb139-4" aria-hidden="true" tabindex="-1"></a>swiss<span class="sc">$</span>Religion <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(swiss<span class="sc">$</span>Religion)</span></code></pre></div>
+</div>
+</div>
+<div id="data-and-aesthetics" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Data and aesthetics</h3>
+<p>We initiate the most basic plot with <code>ggplot()</code> by defining which data we want to use and in the plot aesthetics which variable we want to use on the x and y axes. Here, we are interested in whether the level of education beyond primary school in a given district is related with how well draftees from the same district do in a standardized army examination (% of draftees that get the highest mark in the examination).</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="working-with-data.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination))</span></code></pre></div>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-45-1.svg" width="85%" /></p>
+<p>As we have not yet defined according to what rules the data shall be visualized, all we get is an empty ‘canvas’ and the axes (with the respective label and ticks indicating the range of the values).</p>
+</div>
+<div id="geometries-the-type-of-plot" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Geometries (~the type of plot)</h3>
+<p>To actually plot the data we have to define the ‘geometries,’ defining according to which function the data should be mapped/visualized. In other words, geometries define which ‘type of plot’ we use to visualize the data (histogram, lines, points, etc.). In the example code below, we use <code>geom_point()</code> to get a simple point plot.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="working-with-data.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb141-2"><a href="working-with-data.html#cb141-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-46-1.svg" width="85%" /></p>
+<p>The result indicates that there is a positive correlation between the level of education and how well draftees do in the examination. We want to better understand this correlation. Particularly, what other factors could drive this picture.</p>
+<div id="facets" class="section level4" number="3.4.3.1">
+<h4><span class="header-section-number">3.4.3.1</span> Facets</h4>
+<p>According to a popular thesis, the protestant reformation and the spread of the protestant movement in Europe was driving the development of compulsory schooling. It would thus be reasonable to hypothesize that the picture we see is partly driven by differences in schooling between Catholic and Protestant districts. In order to make such differences visible in the data, we use ‘facets’ to show the same plot again, but this time separating observations from Catholic and Protestant districts:</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="working-with-data.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb142-2"><a href="working-with-data.html#cb142-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb142-3"><a href="working-with-data.html#cb142-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-47-1.svg" width="85%" /></p>
+<p>Draftees from protestant districts tend to do generally better (which might be an indication of better primary schools, or a generally stronger focus on scholastic achievements of Protestant children). However, the relationship between education (beyond primary schools) and examination success seems to hold for either type of districts.</p>
+</div>
+<div id="additional-layers-and-statistics" class="section level4" number="3.4.3.2">
+<h4><span class="header-section-number">3.4.3.2</span> Additional layers and statistics</h4>
+<p>Let’s visualize this relationship more clearly by drawing trend-lines through the scatter diagrams. Once with the non-parametric ‘loess’-approach and once forcing a linear model on the relationship between the two variables.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="working-with-data.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb143-2"><a href="working-with-data.html#cb143-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb143-3"><a href="working-with-data.html#cb143-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;loess&#39;</span>) <span class="sc">+</span></span>
+<span id="cb143-4"><a href="working-with-data.html#cb143-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-48-1.svg" width="85%" /></p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="working-with-data.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb145-2"><a href="working-with-data.html#cb145-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb145-3"><a href="working-with-data.html#cb145-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb145-4"><a href="working-with-data.html#cb145-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-49-1.svg" width="85%" /></p>
+</div>
+<div id="additional-aesthetics" class="section level4" number="3.4.3.3">
+<h4><span class="header-section-number">3.4.3.3</span> Additional aesthetics</h4>
+<p>Knowing a little bit about Swiss history and geography, we realize that particularly rural cantons in mountain regions remained Catholic during the reformation. In addition, cantonal school systems historically took into account that children have to help their parents on the farms during the summers. Thus in some rural cantons schools were closed from spring until autumn. Hence, we might want to indicate in the plot which point refers to a predominantly agricultural district. We use the aesthetics of the point geometry to color the points according to the ‘<code>Agriculture</code>’-variable (the % of males involved in agriculture as occupation).</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="working-with-data.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb147-2"><a href="working-with-data.html#cb147-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb147-3"><a href="working-with-data.html#cb147-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb147-4"><a href="working-with-data.html#cb147-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-50-1.svg" width="85%" /></p>
+<p>The resulting picture is in line with what we have expected. Overall, the districts with a lower share of occupation in agriculture tend to have rather higher levels of education as well as higher achievements in the examination.</p>
+</div>
+<div id="coordinates" class="section level4" number="3.4.3.4">
+<h4><span class="header-section-number">3.4.3.4</span> Coordinates</h4>
+<p>Finally, there are countless options to further refine the plot. For example, we can easily change the orientation/coordinates of the plot:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="working-with-data.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb149-2"><a href="working-with-data.html#cb149-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb149-3"><a href="working-with-data.html#cb149-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb149-4"><a href="working-with-data.html#cb149-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb149-5"><a href="working-with-data.html#cb149-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">coord_flip</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-51-1.svg" width="85%" /></p>
+</div>
+<div id="themes-fine-tuning-the-plot" class="section level4" number="3.4.3.5">
+<h4><span class="header-section-number">3.4.3.5</span> Themes: Fine-tuning the plot</h4>
+<p>In addition, the <code>theme()</code>-function allows to change almost every aspect of the plot (margins, font face, font size, etc.). For example, we might prefer to have the plot legend at the bottom and have larger axis labels.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="working-with-data.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb151-2"><a href="working-with-data.html#cb151-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb151-3"><a href="working-with-data.html#cb151-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb151-4"><a href="working-with-data.html#cb151-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb151-5"><a href="working-with-data.html#cb151-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>) ) </span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-52-1.svg" width="85%" /></p>
+<p>Moreover, several theme-templates offer ready-made designs for plots:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="working-with-data.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb153-2"><a href="working-with-data.html#cb153-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb153-3"><a href="working-with-data.html#cb153-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb153-4"><a href="working-with-data.html#cb153-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb153-5"><a href="working-with-data.html#cb153-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-53-1.svg" width="85%" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="working-with-data.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> swiss, <span class="fu">aes</span>(<span class="at">x =</span> Education, <span class="at">y =</span> Examination)) <span class="sc">+</span> </span>
+<span id="cb155-2"><a href="working-with-data.html#cb155-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> Agriculture)) <span class="sc">+</span></span>
+<span id="cb155-3"><a href="working-with-data.html#cb155-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="sc">+</span></span>
+<span id="cb155-4"><a href="working-with-data.html#cb155-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="sc">~</span>Religion) <span class="sc">+</span></span>
+<span id="cb155-5"><a href="working-with-data.html#cb155-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_dark</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="r_intro_files/figure-html/unnamed-chunk-54-1.svg" width="85%" /></p>
+</div>
+</div>
+</div>
+<div id="basic-statistics-and-econometrics-with-r" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Basic Statistics and Econometrics with <em>R</em></h2>
+<p>In the previous part we have learned how to implement basic statistics functions in <em>R</em>, as well as notices that for most of these statistics <em>R</em> already has a build-in function.</p>
+<p>For example, mean and median:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="working-with-data.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate sample</span></span>
+<span id="cb157-2"><a href="working-with-data.html#cb157-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">22</span>,<span class="dv">33</span>, <span class="dv">22</span>, <span class="dv">40</span>)</span>
+<span id="cb157-3"><a href="working-with-data.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Andy&quot;</span>, <span class="st">&quot;Betty&quot;</span>, <span class="st">&quot;Claire&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Eva&quot;</span>)</span>
+<span id="cb157-4"><a href="working-with-data.html#cb157-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-5"><a href="working-with-data.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the mean</span></span>
+<span id="cb157-6"><a href="working-with-data.html#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(a)</span></code></pre></div>
+<pre><code>## [1] 25.4</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="working-with-data.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the median</span></span>
+<span id="cb159-2"><a href="working-with-data.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(a)</span></code></pre></div>
+<pre><code>## [1] 22</code></pre>
+<p>…as well as different measures of variability,</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="working-with-data.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(a)</span></code></pre></div>
+<pre><code>## [1] 10 40</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="working-with-data.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(a)</span></code></pre></div>
+<pre><code>## [1] 132.8</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="working-with-data.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(a)</span></code></pre></div>
+<pre><code>## [1] 11.52</code></pre>
+<p>and test statistics such as the t-test.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="working-with-data.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define size of sample</span></span>
+<span id="cb167-2"><a href="working-with-data.html#cb167-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb167-3"><a href="working-with-data.html#cb167-3" aria-hidden="true" tabindex="-1"></a><span class="co"># draw the random sample from a normal distribution with mean 10 and sd 2</span></span>
+<span id="cb167-4"><a href="working-with-data.html#cb167-4" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb167-5"><a href="working-with-data.html#cb167-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-6"><a href="working-with-data.html#cb167-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Test H0: mean of population = 10 </span></span>
+<span id="cb167-7"><a href="working-with-data.html#cb167-7" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(sample, <span class="at">mu =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  sample
+## t = -2, df = 99, p-value = 0.05
+## alternative hypothesis: true mean is not equal to 10
+## 95 percent confidence interval:
+##  9.206 9.993
+## sample estimates:
+## mean of x 
+##       9.6</code></pre>
+<div id="regression-analysis-with-r" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Regression analysis with <em>R</em></h3>
+<p>Finally, <em>R</em> and additional <em>R</em> packages offer functions for almost all models and tests in modern applied econometrics. While the syntax and return values of these functions are note 100% consistent (due to the fact that many different authors contributed some of these functions), applying them is usually quite similar. Functions for econometric models typically have the two main parameters <code>data</code> (the dataset to use in the estimation, in <code>data.frame</code>-format) and <code>formula</code> (a symbolic description of the model to be fitted, following a defined convention). Typically, the following three steps are involved when running regressions in <em>R</em> (assuming the data is already loaded and prepared):</p>
+<ol style="list-style-type: decimal">
+<li>In <code>formula</code>, we define the model we want to fit as an object of class ‘formula.’ For example, we want to regress <code>Examination</code> on <code>Education</code> with the <code>swiss</code>-dataset used above.</li>
+</ol>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="working-with-data.html#cb169-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> Examination<span class="sc">~</span>Education</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Fit the model with the respective estimator. Here we use <code>lm()</code> the <em>R</em> workhorse for linear models to fit the model with OLS:</li>
+</ol>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="working-with-data.html#cb170-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> model1, <span class="at">data =</span> swiss)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Get summary statistics with the generic <code>summary()</code>. In the case of an object of class <code>lm</code> (the output of <code>lm()</code>), this amounts to the typical coefficient t-statistics an p-values shown in regression tables:</li>
+</ol>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="working-with-data.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = model1, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -10.932  -4.763  -0.184   3.891  12.498 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  10.1275     1.2859    7.88  5.2e-10 ***
+## Education     0.5795     0.0885    6.55  4.8e-08 ***
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.77 on 45 degrees of freedom
+## Multiple R-squared:  0.488,  Adjusted R-squared:  0.476 
+## F-statistic: 42.9 on 1 and 45 DF,  p-value: 4.81e-08</code></pre>
+</div>
+<div id="linear-model" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Linear model</h3>
+<p>Putting the pieces together, we can write a simple script to analyse the <code>swiss</code>-dataset (in spirit of the data visualization above):</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="working-with-data.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb173-2"><a href="working-with-data.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb173-3"><a href="working-with-data.html#cb173-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-4"><a href="working-with-data.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="co"># linear regression with one variable</span></span>
+<span id="cb173-5"><a href="working-with-data.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate coefficients</span></span>
+<span id="cb173-6"><a href="working-with-data.html#cb173-6" aria-hidden="true" tabindex="-1"></a>model_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Examination<span class="sc">~</span>Education, <span class="at">data =</span> swiss)</span>
+<span id="cb173-7"><a href="working-with-data.html#cb173-7" aria-hidden="true" tabindex="-1"></a><span class="co"># t-tests of coefficients (and additional statistics)</span></span>
+<span id="cb173-8"><a href="working-with-data.html#cb173-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Examination ~ Education, data = swiss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -10.932  -4.763  -0.184   3.891  12.498 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  10.1275     1.2859    7.88  5.2e-10 ***
+## Education     0.5795     0.0885    6.55  4.8e-08 ***
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.77 on 45 degrees of freedom
+## Multiple R-squared:  0.488,  Adjusted R-squared:  0.476 
+## F-statistic: 42.9 on 1 and 45 DF,  p-value: 4.81e-08</code></pre>
+<p>Specifying the linear model differently can be done by simply changing the formula of the model. For example, we might want to control for the share of agricultural occupation.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="working-with-data.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple linear regression</span></span>
+<span id="cb175-2"><a href="working-with-data.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate coefficients</span></span>
+<span id="cb175-3"><a href="working-with-data.html#cb175-3" aria-hidden="true" tabindex="-1"></a>model_fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Examination<span class="sc">~</span>Education <span class="sc">+</span> Catholic <span class="sc">+</span> Agriculture, <span class="at">data =</span> swiss)</span>
+<span id="cb175-4"><a href="working-with-data.html#cb175-4" aria-hidden="true" tabindex="-1"></a><span class="co"># t-tests of coefficients (and additional statistics)</span></span>
+<span id="cb175-5"><a href="working-with-data.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_fit2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Examination ~ Education + Catholic + Agriculture, 
+##     data = swiss)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -9.315 -2.831 -0.349  3.349  7.417 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  18.5370     2.6371    7.03  1.2e-08 ***
+## Education     0.4242     0.0868    4.89  1.5e-05 ***
+## Catholic     -0.0798     0.0168   -4.75  2.3e-05 ***
+## Agriculture  -0.0676     0.0396   -1.71    0.095 .  
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.3 on 43 degrees of freedom
+## Multiple R-squared:  0.728,  Adjusted R-squared:  0.709 
+## F-statistic: 38.3 on 3 and 43 DF,  p-value: 3.21e-12</code></pre>
+</div>
+<div id="other-econometric-models-and-useful-regression-packages" class="section level3" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Other econometric models and useful regression packages</h3>
+<p>Various additional packages provide all kind of functions to estimate diverse economietric models. Many generalized linear models can be fitted with the <code>glm()</code>-function (<code>formula</code> and <code>data</code> used as in <code>lm()</code>):</p>
+<ul>
+<li>Probit model: <code>glm(..., family = binomial(link = "probit"))</code>.</li>
+<li>Logit model: <code>glm(..., family = "binomial")</code>.</li>
+<li>Poisson regression (count data): <code>glm(..., family="poisson")</code>.</li>
+</ul>
+<p>Other frequently used packages for econometric regression analysis:</p>
+<ul>
+<li>Panel data econometrics: package <code>plm</code>, <code>fixest</code>, <code>lfe</code>.</li>
+<li>Time-series econometrics: package <code>tseries</code>.</li>
+<li>Basic IV regression: <code>ivreg()</code> in package <code>AER</code>.</li>
+<li>Generalized methods of moments: package <code>gmm</code>.</li>
+<li>Generalized additive models: package <code>gam</code>.</li>
+<li>Lasso regression: package <code>glmnet</code>.</li>
+<li>Survival analysis: package <code>survival</code>.</li>
+</ul>
+<p>See also the <a href="https://cran.r-project.org/web/views/Econometrics.html">CRAN Econometrics Task View</a>.</p>
+</div>
+<div id="regression-tables" class="section level3" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Regression tables</h3>
+<p>Economists typically present regression results in detailed regression tables, with regression coefficients in rows and model specifications in columns. The package <code>stargazer</code> provides some functions to generate such tables very easily for outputs of the most common regression functions (<code>lm()</code>, <code>glm()</code>, etc.):</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="working-with-data.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb177-2"><a href="working-with-data.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="working-with-data.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print regression results as text</span></span>
+<span id="cb178-2"><a href="working-with-data.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(model_fit, model_fit2, <span class="at">type =</span> <span class="st">&quot;text&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## =================================================================
+##                                  Dependent variable:             
+##                     ---------------------------------------------
+##                                      Examination                 
+##                              (1)                    (2)          
+## -----------------------------------------------------------------
+## Education                  0.579***               0.424***       
+##                            (0.089)                (0.087)        
+##                                                                  
+## Catholic                                         -0.080***       
+##                                                   (0.017)        
+##                                                                  
+## Agriculture                                       -0.068*        
+##                                                   (0.040)        
+##                                                                  
+## Constant                  10.130***              18.540***       
+##                            (1.286)                (2.637)        
+##                                                                  
+## -----------------------------------------------------------------
+## Observations                  47                     47          
+## R2                          0.488                  0.728         
+## Adjusted R2                 0.476                  0.709         
+## Residual Std. Error    5.773 (df = 45)        4.304 (df = 43)    
+## F Statistic         42.850*** (df = 1; 45) 38.350*** (df = 3; 43)
+## =================================================================
+## Note:                                 *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+<p>Alternatively the regression table can be directly generated as LaTeX table or as HTML table, which can be parsed and rendered for an html document or pdf document, when generated as part of an Rmd-file (such as this lecture notes).</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="working-with-data.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conditional on the output format of the whole document,</span></span>
+<span id="cb180-2"><a href="working-with-data.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="co"># generate and render a HTML or a LaTeX table.</span></span>
+<span id="cb180-3"><a href="working-with-data.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_latex_output</span>()) {</span>
+<span id="cb180-4"><a href="working-with-data.html#cb180-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stargazer</span>(model_fit, model_fit2, <span class="at">type =</span> <span class="st">&quot;latex&quot;</span>,</span>
+<span id="cb180-5"><a href="working-with-data.html#cb180-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">table.placement =</span> <span class="st">&quot;H&quot;</span>)</span>
+<span id="cb180-6"><a href="working-with-data.html#cb180-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb180-7"><a href="working-with-data.html#cb180-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stargazer</span>(model_fit, model_fit2, <span class="at">type =</span> <span class="st">&quot;html&quot;</span>)</span>
+<span id="cb180-8"><a href="working-with-data.html#cb180-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="2">
+Examination
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Education
+</td>
+<td>
+0.579<sup>***</sup>
+</td>
+<td>
+0.424<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.089)
+</td>
+<td>
+(0.087)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Catholic
+</td>
+<td>
+</td>
+<td>
+-0.080<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.017)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Agriculture
+</td>
+<td>
+</td>
+<td>
+-0.068<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.040)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+10.130<sup>***</sup>
+</td>
+<td>
+18.540<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1.286)
+</td>
+<td>
+(2.637)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+47
+</td>
+<td>
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.488
+</td>
+<td>
+0.728
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.476
+</td>
+<td>
+0.709
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+5.773 (df = 45)
+</td>
+<td>
+4.304 (df = 43)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+42.850<sup>***</sup> (df = 1; 45)
+</td>
+<td>
+38.350<sup>***</sup> (df = 3; 43)
+</td>
+</tr>
+<tr>
+<td colspan="3" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="2" style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-einav_levin2014" class="csl-entry">
+Einav, Liran, and Jonathan Levin. 2014. <span>“Economics in the Age of Big Data.”</span> <em>Science</em> 346 (6210): 1243089-1-1243089-6. <a href="https://doi.org/10.1126/science.1243089">https://doi.org/10.1126/science.1243089</a>.
+</div>
+<div id="ref-matter_stutzer2015" class="csl-entry">
+Matter, Ulrich, and Alois Stutzer. 2015. <span>“<span class="nocase">pvsR: An Open Source Interface to Big Data on the American Political Sphere</span>.”</span> <em>PLOS ONE</em> 10 (7): 1–21. <a href="https://doi.org/10.1371/journal.pone.0130501">https://doi.org/10.1371/journal.pone.0130501</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>Properly posting a question on Stackoverflow requires the provision of a code example based on data that everybody can easily load and access.<a href="working-with-data.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="first-steps-with-r.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_intro.pdf", "r_intro.html", "r_intro.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

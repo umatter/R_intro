@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A Brief Introduction to Programming with R</title>
+  <meta name="description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A Brief Introduction to Programming with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/while_loop_own_black.png" />
+  <meta property="og:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Brief Introduction to Programming with R" />
+  
+  <meta name="twitter:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  <meta name="twitter:image" content="img/while_loop_own_black.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="why-learn-to-program-now.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programming with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html"><i class="fa fa-check"></i><b>1</b> Why learn to program (now)?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <em>R</em>?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-data-language"><i class="fa fa-check"></i><b>1.1.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="1.1.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>1.1.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="1.1.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#free-open-source-large-community"><i class="fa fa-check"></i><b>1.1.3</b> Free, open source, large community</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-tools-rrstudio"><i class="fa fa-check"></i><b>1.2</b> The tools: <em>R</em>/RStudio</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-r-console"><i class="fa fa-check"></i><b>1.2.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="1.2.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#r-scripts"><i class="fa fa-check"></i><b>1.2.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="1.2.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#r-environment"><i class="fa fa-check"></i><b>1.2.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="1.2.4" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#file-browser"><i class="fa fa-check"></i><b>1.2.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercise-a-setting-up-a-working-environment"><i class="fa fa-check"></i><b>1.3.1</b> Exercise A: Setting up a Working Environment</a></li>
+<li class="chapter" data-level="1.3.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercise-b-r-scripts"><i class="fa fa-check"></i><b>1.3.2</b> Exercise B: <em>R</em> Scripts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html"><i class="fa fa-check"></i><b>2</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1</b> Variables and Vectors</a></li>
+<li class="chapter" data-level="2.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#math-operators"><i class="fa fa-check"></i><b>2.2</b> Math Operators</a></li>
+<li class="chapter" data-level="2.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.3</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#loops"><i class="fa fa-check"></i><b>2.3.1</b> Loops</a></li>
+<li class="chapter" data-level="2.3.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.3.2</b> Booleans and Logical Statements</a></li>
+<li class="chapter" data-level="2.3.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#r-functions"><i class="fa fa-check"></i><b>2.3.3</b> R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#data-structures-and-indeces"><i class="fa fa-check"></i><b>2.4</b> Data Structures and Indeces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#vectors-and-lists"><i class="fa fa-check"></i><b>2.4.1</b> Vectors and Lists</a></li>
+<li class="chapter" data-level="2.4.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#lists"><i class="fa fa-check"></i><b>2.4.2</b> Lists</a></li>
+<li class="chapter" data-level="2.4.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#matrices-and-data-frames"><i class="fa fa-check"></i><b>2.4.3</b> Matrices and Data Frames</a></li>
+<li class="chapter" data-level="2.4.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#classes-and-data-structures"><i class="fa fa-check"></i><b>2.4.4</b> Classes and Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercises-1"><i class="fa fa-check"></i><b>2.5</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-a-write-a-sum-function"><i class="fa fa-check"></i><b>2.5.1</b> Exercise A: Write a Sum Function</a></li>
+<li class="chapter" data-level="2.5.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-b-robustness-and-warnings"><i class="fa fa-check"></i><b>2.5.2</b> Exercise B: Robustness and Warnings</a></li>
+<li class="chapter" data-level="2.5.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-c-standard-deviation-function"><i class="fa fa-check"></i><b>2.5.3</b> Exercise C: Standard Deviation Function</a></li>
+<li class="chapter" data-level="2.5.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-d-standard-error-function"><i class="fa fa-check"></i><b>2.5.4</b> Exercise D: Standard Error Function</a></li>
+<li class="chapter" data-level="2.5.5" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-e-t-test"><i class="fa fa-check"></i><b>2.5.5</b> Exercise E: T-test</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>3</b> Working with Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="working-with-data.html"><a href="working-with-data.html#basics-loadingimporting-data"><i class="fa fa-check"></i><b>3.1</b> Basics Loading/Importing Data</a></li>
+<li class="chapter" data-level="3.2" data-path="working-with-data.html"><a href="working-with-data.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>3.2</b> Loading built-in datasets</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="working-with-data.html"><a href="working-with-data.html#importing-data-from-files"><i class="fa fa-check"></i><b>3.2.1</b> Importing data from files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="working-with-data.html"><a href="working-with-data.html#data-visualization-with-r-ggplot2"><i class="fa fa-check"></i><b>3.3</b> Data Visualization with <em>R</em> (<code>ggplot2</code>)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="working-with-data.html"><a href="working-with-data.html#grammar-of-graphics"><i class="fa fa-check"></i><b>3.3.1</b> ‘Grammar of Graphics’</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="working-with-data.html"><a href="working-with-data.html#ggplot2-basics"><i class="fa fa-check"></i><b>3.4</b> <code>ggplot2</code> basics</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="working-with-data.html"><a href="working-with-data.html#tutorial"><i class="fa fa-check"></i><b>3.4.1</b> Tutorial</a></li>
+<li class="chapter" data-level="3.4.2" data-path="working-with-data.html"><a href="working-with-data.html#data-and-aesthetics"><i class="fa fa-check"></i><b>3.4.2</b> Data and aesthetics</a></li>
+<li class="chapter" data-level="3.4.3" data-path="working-with-data.html"><a href="working-with-data.html#geometries-the-type-of-plot"><i class="fa fa-check"></i><b>3.4.3</b> Geometries (~the type of plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="working-with-data.html"><a href="working-with-data.html#basic-statistics-and-econometrics-with-r"><i class="fa fa-check"></i><b>3.5</b> Basic Statistics and Econometrics with <em>R</em></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="working-with-data.html"><a href="working-with-data.html#regression-analysis-with-r"><i class="fa fa-check"></i><b>3.5.1</b> Regression analysis with <em>R</em></a></li>
+<li class="chapter" data-level="3.5.2" data-path="working-with-data.html"><a href="working-with-data.html#linear-model"><i class="fa fa-check"></i><b>3.5.2</b> Linear model</a></li>
+<li class="chapter" data-level="3.5.3" data-path="working-with-data.html"><a href="working-with-data.html#other-econometric-models-and-useful-regression-packages"><i class="fa fa-check"></i><b>3.5.3</b> Other econometric models and useful regression packages</a></li>
+<li class="chapter" data-level="3.5.4" data-path="working-with-data.html"><a href="working-with-data.html#regression-tables"><i class="fa fa-check"></i><b>3.5.4</b> Regression tables</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Brief Introduction to Programming with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">A Brief Introduction to Programming with R</h1>
+<p class="author"><em>Ulrich Matter</em></p>
+<p class="date"><em>2022-01-21</em></p>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p><img src="img/while_loop_own_black.png" height="300px" style="display: block; margin: auto;" /></p>
+<p>This textbook introduces students to the fundamental practices of Data Science in the context of economic research. The course
+covers basic theoretical concepts and practical skills in gathering, preparing/cleaning, visualizing, storing, and analyzing digital
+data for research purposes.</p>
+<div class="figure">
+<img src="img/cc.png" alt="" />
+<p class="caption">Creative Commons License</p>
+</div>
+<p>The online version of this book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<!-- ## Why read this book {-} -->
+<!-- Can we write a book in one source format, and generate the output to multiple formats? Traditionally books are often written with LaTeX or Microsoft Word. Either of these tools will make writing books a one-way trip and you cannot turn back: if you choose LaTeX, you typically end up only with a PDF document; if you work with Word, you are likely to have to stay in Word forever, and may also miss the many useful features and beautiful PDF output from LaTeX. -->
+<!-- Can we focus on writing the content without worrying too much about typesetting? There seems a natural contradiction between content and appearance, and we always have to balance our time spent on these two aspects. No one can have a cake and eat it too, but it does not mean we cannot have a half and eat a half. We want our book to look reasonably pretty, and we also want to focus on the content. One possibility is to give up PDF temporarily, and what you may have in return is a pretty preview of your book as HTML web pages\index{HTML}. LaTeX\index{LaTeX} is an excellent typesetting tool, but you can be easily buried in the numerous LaTeX commands and typesetting details while you are working on the book. It is just so hard to refrain from previewing the book in PDF, and unfortunately also so common to find certain words exceed the page margin, certain figures float to a random page, five or six stray words at the very end of a chapter proudly take up a whole new page, and so on. If the book is to be printed, we will have to deal with these issues eventually, but it is not worth being distracted over and over again while you are writing the content of the book. The fact that the Markdown syntax is simpler and has fewer features than LaTeX also helps you focus on the content. Do you really have to define a new command like `\myprecious{}` that applies `\textbf{\textit{\textsf{}}}` to your text? Does the letter "R" have to be enclosed in `\proglang{}` when readers can easily figure out it stands for the R language? It does not make much difference whether everything, or nothing, needs the reader's attention. -->
+<!-- Can readers interact with examples in our book as they read it? The answer is certainly no if the book is printed on paper, but it is possible if your book has an HTML version that contains live examples, such as Shiny applications (https://shiny.rstudio.com) or HTML widgets (https://htmlwidgets.org). For example, readers may immediately know what happens if they change certain parameters of a statistical model. -->
+<!-- Can we get feedback and even contributions from readers as we develop the book? Traditionally the editor will find a small number of anonymous reviewers to review your book. Reviewers are often helpful, but you may still miss the wisdom of more representative readers. It is too late after the first edition is printed, and readers may need to wait for a few years before the second edition is ready. There are some web platforms that make it easy for people to provide feedback and contribute to your projects. GitHub (https://github.com) is one prominent example. If anyone finds a typo in your book, he/she can simply correct it online and submit the change back to you for your approval. It is a matter of clicking a button to merge the change, with no questions asked or emails back and forth. To be able to use these platforms, you need to learn the basics of version control tools like GIT, and your book source files should be in plain text. -->
+<!-- The combination of R (https://www.r-project.org), Markdown, and Pandoc (http://pandoc.org) makes it possible to go from one simple source format (R Markdown) to multiple possible output formats (PDF, HTML, EPUB, and Word, etc.). The **bookdown** package is based on R Markdown, and provides output formats for books and long-form articles, including the GitBook format, which is a multi-page HTML output format with a useful and beautiful user interface. It is much easier to typeset in HTML than LaTeX, so you can always preview your book in HTML, and work on PDF after the content is mostly done. Live examples can be easily embedded in HTML, which can make the book more attractive and useful. R Markdown is a plain-text format, so you can also enjoy the benefits of version control, such as collaborating on GitHub. We have also tried hard to port some important features from LaTeX to HTML and other output formats, such as figure/table numbering and cross-references. -->
+<!-- In short, you just prepare a few R Markdown book chapters, and **bookdown** can help you turn them into a beautiful book. -->
+<!-- ## Structure of the book {-} -->
+<!-- Chapters \@ref(introduction) and \@ref(components) introduce the basic usage and syntax, which should be sufficient to get most readers started in writing a book. Chapters \@ref(output-formats) and \@ref(customization) are for those who want to fine-tune the appearance of their books. They may look very technical if you are not familiar with HTML/CSS and LaTeX. You do not need to read these two chapters very carefully for the first time. You can learn what can be possibly changed, and come back later to know how. For Chapter \@ref(editing), the technical details are not important unless you do not use the RStudio IDE (Section \@ref(rstudio-ide)). Similarly, you may feel overwhelmed by the commands presented in Chapter \@ref(publishing) to publish your book, but again, we have tried to make it easy to publish your book online via the RStudio IDE. The custom commands and functions are only for those who choose not to use RStudio's service or want to understand the technical details. -->
+<!-- To sum it up, this book is a comprehensive reference of the **bookdown** package. You can follow the [80/20 rule](https://en.wikipedia.org/wiki/Pareto_principle) when reading it. Some sections are there for the sake of completeness, and not all sections are equally useful to the particular book(s) that you intend to write. -->
+<!-- ## Software information and conventions {-} -->
+<!-- This book is primarily about the R package **bookdown**, so you need to at least install R and the **bookdown** package. However, your book does not have to be related to the R language at all. It can use other computing languages (C++, SQL, Python, and so on; see Appendix \@ref(software-usage)), and it can even be totally irrelevant to computing (e.g., you can write a novel, or a collection of poems). The software tools required to build a book are introduced in Appendix \@ref(software-tools). -->
+<!-- The R session information when compiling this book is shown below: -->
+<!-- ```{r include=FALSE} -->
+<!-- # only show versions of very relevant packages -->
+<!-- sessionInfo = function() { -->
+<!--   lapply(c('shiny', 'miniUI'), loadNamespace) -->
+<!--   res = utils::sessionInfo() -->
+<!--   loaded = res$loadedOnly -->
+<!--   res$loadedOnly = loaded[intersect(names(loaded), c( -->
+<!--     'bookdown', 'knitr', 'rmarkdown', 'shiny', 'htmltools', 'tools', 'miniUI' -->
+<!--   ))] -->
+<!--   res$BLAS = res$LAPACK = NULL -->
+<!--   res -->
+<!-- } -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- sessionInfo() -->
+<!-- ``` -->
+<!-- We do not add prompts (`>` and `+`) to R source code in this book, and we comment out the text output with two hashes `##` by default, as you can see from the R session information above. This is for your convenience when you want to copy and run the code (the text output will be ignored since it is commented out). Package names are in bold text (e.g., **rmarkdown**), and inline code and filenames are formatted in a typewriter font (e.g., `knitr::knit('foo.Rmd')`). Function names are followed by parentheses (e.g., `bookdown::render_book()`). The double-colon operator `::` means accessing an object from a package.  -->
+<!-- ## Acknowledgments {-} -->
+<!-- First I'd like to thank my employer, RStudio, for providing me the opportunity to work on this exciting project. I was hoping to work on it when I first saw the GitBook project in 2013, because I immediately realized it was a beautiful book style and there was a lot more power we could add to it, judging from my experience of writing the **knitr** book [@xie2015] and reading other books. R Markdown became mature after two years, and luckily, **bookdown** became my official job in late 2015. There are not many things in the world better than the fact that your job happens to be your hobby (or vice versa). I totally enjoyed messing around with JavaScript libraries, LaTeX packages, and endless regular expressions in R. Honestly I should also thank Stack Overflow (https://stackoverflow.com), and I believe you all know [what I mean,](http://bit.ly/2cWbiAp) if you have ever written any program code. -->
+<!-- This project is certainly not a single person's effort. Several colleagues at RStudio have helped me along the way. Hadley Wickham provided a huge amount of feedback during the development of **bookdown**, as he was working on his book _R for Data Science_ with Garrett Grolemund. JJ Allaire and Jonathan McPherson provided a lot of technical help directly to this package as well as support in the RStudio IDE. Jeff Allen, Chaita Chaudhari, and the RStudio Connect team have been maintaining the https://bookdown.org website. Robby Shaver designed a nice cover image for this book. Both Hadley Wickham and Mine Cetinkaya-Rundel reviewed the manuscript and gave me a lot of helpful comments. Tareef Kawaf tried his best to help me become a professional software engineer. It is such a blessing to work in this company with enthusiastic and smart people. I remember once I told Jonathan, "hey I found a problem in caching HTML widgets dependencies and finally figured out a possible solution". Jonathan grabbed his beer and said, "I already solved it." "Oh, nice, nice." -->
+<!-- I also received a lot of feedback from book authors outside RStudio, including Jan de Leeuw, Jenny Bryan, Dean Attali, Rafael Irizarry, Michael Love, Roger Peng, Andrew Clark, and so on. Some users also contributed code to the project and helped revise the book. Here is a list of all contributors: https://github.com/rstudio/bookdown/graphs/contributors. It feels good when you invent a tool and realize you are also the beneficiary of your own tool. As someone who loves the GitHub pull request model, I wished readers did not have to email me there was a typo or obvious mistake in my book, but could just fix it via a pull request. This was made possible in **bookdown**. You can see how many pull requests on typos I have merged: https://github.com/rstudio/bookdown/pulls. It is nice to have so many outsourced careful human spell checkers. It is not that I do not know how to use a real spell checker, but I do not want to do this before the book is finished, and the evil Yihui also wants to leave a few simple tasks to the readers to engage them in improving the book. -->
+<!-- Callum Webb kindly designed a nice hexbin sticker for **bookdown**. -->
+<!-- The **bookdown** package is not possible without a few open-source software packages. In particular, Pandoc, GitBook, jQuery, and the dependent R packages, not to mention R itself. I thank the developers of these packages. -->
+<!-- I moved to Omaha, Nebraska, in 2015, and enjoyed one year at Steeplechase Apartments, where I lived comfortably while developing the **bookdown** package, thanks to the extremely friendly and helpful staff. Then I met a professional and smart realtor, Kevin Schaben, who found a fabulous home for us in an amazingly short period of time, and I finished this book in our new home. -->
+<!-- John Kimmel, the editor from Chapman & Hall/CRC, helped me publish my first book. It is my pleasure to work with him again. He generously agreed to let me keep the online version of this book for free, so I can continue to update it after it is printed and published (i.e., you do not have to wait for years for the second edition to correct mistakes and introduce new features). I wish I could be as open-minded as he is when I'm his age. Rebecca Condit and Suzanne Lassandro proofread the manuscript, and their suggestions were professional and helpful. Shashi Kumar solved some of my technical issues with the publisher's LaTeX class (`krantz.cls`) when I was trying to integrate it with **bookdown**. I also appreciate the very helpful comments from the reviewers Jan de Leeuw, Karl Broman, Brooke Anderson, Michael Grayling, Daniel Kaplan, and Max Kuhn. -->
+<!-- Lastly I want to thank my family, in particular, my wife and son, for their support. The one-year-old has discovered that my monitor will light up when he touches my keyboard, so occasionally he just creeps into my office and presses randomly on the keyboard when I'm away. I'm not sure if this counts as his contribution to the book... \@)!%)&\@\* -->
+
+<p class="flushright">
+Ulrich Matter
+St. Gallen, Switzerland
+</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="why-learn-to-program-now.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_intro.pdf", "r_intro.html", "r_intro.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

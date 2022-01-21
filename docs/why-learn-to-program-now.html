@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Why learn to program (now)? | A Brief Introduction to Programming with R</title>
+  <meta name="description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Why learn to program (now)? | A Brief Introduction to Programming with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/while_loop_own_black.png" />
+  <meta property="og:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Why learn to program (now)? | A Brief Introduction to Programming with R" />
+  
+  <meta name="twitter:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
+  <meta name="twitter:image" content="img/while_loop_own_black.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="first-steps-with-r.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Programming with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html"><i class="fa fa-check"></i><b>1</b> Why learn to program (now)?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why <em>R</em>?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-data-language"><i class="fa fa-check"></i><b>1.1.1</b> The ‘data language’</a></li>
+<li class="chapter" data-level="1.1.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#high-level-language-relatively-easy-to-learn"><i class="fa fa-check"></i><b>1.1.2</b> High-level language, relatively easy to learn</a></li>
+<li class="chapter" data-level="1.1.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#free-open-source-large-community"><i class="fa fa-check"></i><b>1.1.3</b> Free, open source, large community</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-tools-rrstudio"><i class="fa fa-check"></i><b>1.2</b> The tools: <em>R</em>/RStudio</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#the-r-console"><i class="fa fa-check"></i><b>1.2.1</b> The <em>R</em>-Console</a></li>
+<li class="chapter" data-level="1.2.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#r-scripts"><i class="fa fa-check"></i><b>1.2.2</b> <em>R</em>-Scripts</a></li>
+<li class="chapter" data-level="1.2.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#r-environment"><i class="fa fa-check"></i><b>1.2.3</b> <em>R</em> Environment</a></li>
+<li class="chapter" data-level="1.2.4" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#file-browser"><i class="fa fa-check"></i><b>1.2.4</b> File Browser</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercises"><i class="fa fa-check"></i><b>1.3</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercise-a-setting-up-a-working-environment"><i class="fa fa-check"></i><b>1.3.1</b> Exercise A: Setting up a Working Environment</a></li>
+<li class="chapter" data-level="1.3.2" data-path="why-learn-to-program-now.html"><a href="why-learn-to-program-now.html#exercise-b-r-scripts"><i class="fa fa-check"></i><b>1.3.2</b> Exercise B: <em>R</em> Scripts</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html"><i class="fa fa-check"></i><b>2</b> First steps with R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#variables-and-vectors"><i class="fa fa-check"></i><b>2.1</b> Variables and Vectors</a></li>
+<li class="chapter" data-level="2.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#math-operators"><i class="fa fa-check"></i><b>2.2</b> Math Operators</a></li>
+<li class="chapter" data-level="2.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#basic-programming-concepts-in-r"><i class="fa fa-check"></i><b>2.3</b> Basic programming concepts in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#loops"><i class="fa fa-check"></i><b>2.3.1</b> Loops</a></li>
+<li class="chapter" data-level="2.3.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#booleans-and-logical-statements"><i class="fa fa-check"></i><b>2.3.2</b> Booleans and Logical Statements</a></li>
+<li class="chapter" data-level="2.3.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#r-functions"><i class="fa fa-check"></i><b>2.3.3</b> R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#data-structures-and-indeces"><i class="fa fa-check"></i><b>2.4</b> Data Structures and Indeces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#vectors-and-lists"><i class="fa fa-check"></i><b>2.4.1</b> Vectors and Lists</a></li>
+<li class="chapter" data-level="2.4.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#lists"><i class="fa fa-check"></i><b>2.4.2</b> Lists</a></li>
+<li class="chapter" data-level="2.4.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#matrices-and-data-frames"><i class="fa fa-check"></i><b>2.4.3</b> Matrices and Data Frames</a></li>
+<li class="chapter" data-level="2.4.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#classes-and-data-structures"><i class="fa fa-check"></i><b>2.4.4</b> Classes and Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercises-1"><i class="fa fa-check"></i><b>2.5</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-a-write-a-sum-function"><i class="fa fa-check"></i><b>2.5.1</b> Exercise A: Write a Sum Function</a></li>
+<li class="chapter" data-level="2.5.2" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-b-robustness-and-warnings"><i class="fa fa-check"></i><b>2.5.2</b> Exercise B: Robustness and Warnings</a></li>
+<li class="chapter" data-level="2.5.3" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-c-standard-deviation-function"><i class="fa fa-check"></i><b>2.5.3</b> Exercise C: Standard Deviation Function</a></li>
+<li class="chapter" data-level="2.5.4" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-d-standard-error-function"><i class="fa fa-check"></i><b>2.5.4</b> Exercise D: Standard Error Function</a></li>
+<li class="chapter" data-level="2.5.5" data-path="first-steps-with-r.html"><a href="first-steps-with-r.html#exercise-e-t-test"><i class="fa fa-check"></i><b>2.5.5</b> Exercise E: T-test</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="working-with-data.html"><a href="working-with-data.html"><i class="fa fa-check"></i><b>3</b> Working with Data</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="working-with-data.html"><a href="working-with-data.html#basics-loadingimporting-data"><i class="fa fa-check"></i><b>3.1</b> Basics Loading/Importing Data</a></li>
+<li class="chapter" data-level="3.2" data-path="working-with-data.html"><a href="working-with-data.html#loading-built-in-datasets"><i class="fa fa-check"></i><b>3.2</b> Loading built-in datasets</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="working-with-data.html"><a href="working-with-data.html#importing-data-from-files"><i class="fa fa-check"></i><b>3.2.1</b> Importing data from files</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="working-with-data.html"><a href="working-with-data.html#data-visualization-with-r-ggplot2"><i class="fa fa-check"></i><b>3.3</b> Data Visualization with <em>R</em> (<code>ggplot2</code>)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="working-with-data.html"><a href="working-with-data.html#grammar-of-graphics"><i class="fa fa-check"></i><b>3.3.1</b> ‘Grammar of Graphics’</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="working-with-data.html"><a href="working-with-data.html#ggplot2-basics"><i class="fa fa-check"></i><b>3.4</b> <code>ggplot2</code> basics</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="working-with-data.html"><a href="working-with-data.html#tutorial"><i class="fa fa-check"></i><b>3.4.1</b> Tutorial</a></li>
+<li class="chapter" data-level="3.4.2" data-path="working-with-data.html"><a href="working-with-data.html#data-and-aesthetics"><i class="fa fa-check"></i><b>3.4.2</b> Data and aesthetics</a></li>
+<li class="chapter" data-level="3.4.3" data-path="working-with-data.html"><a href="working-with-data.html#geometries-the-type-of-plot"><i class="fa fa-check"></i><b>3.4.3</b> Geometries (~the type of plot)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="working-with-data.html"><a href="working-with-data.html#basic-statistics-and-econometrics-with-r"><i class="fa fa-check"></i><b>3.5</b> Basic Statistics and Econometrics with <em>R</em></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="working-with-data.html"><a href="working-with-data.html#regression-analysis-with-r"><i class="fa fa-check"></i><b>3.5.1</b> Regression analysis with <em>R</em></a></li>
+<li class="chapter" data-level="3.5.2" data-path="working-with-data.html"><a href="working-with-data.html#linear-model"><i class="fa fa-check"></i><b>3.5.2</b> Linear model</a></li>
+<li class="chapter" data-level="3.5.3" data-path="working-with-data.html"><a href="working-with-data.html#other-econometric-models-and-useful-regression-packages"><i class="fa fa-check"></i><b>3.5.3</b> Other econometric models and useful regression packages</a></li>
+<li class="chapter" data-level="3.5.4" data-path="working-with-data.html"><a href="working-with-data.html#regression-tables"><i class="fa fa-check"></i><b>3.5.4</b> Regression tables</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Brief Introduction to Programming with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="why-learn-to-program-now" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Why learn to program (now)?</h1>
+<p>With lower computing costs, lower storage costs for digital data, and the diffusion of the Internet, we have recently witnessed a stark increase in the availability of digital data describing all kind of every-day human activities <span class="citation">(<a href="working-with-data.html#ref-einav_levin2014" role="doc-biblioref">Einav and Levin 2014</a>; <a href="working-with-data.html#ref-matter_stutzer2015" role="doc-biblioref">Matter and Stutzer 2015</a>)</span>. As a consequence, new business models and economic structures are emerging with data as their core commodity (i.e., AI-related technological and economic change). A ‘data-driven’ economy heavily relies on processing/analyzing/handling large amounts of digital data.</p>
+<p>The need for proper handling of large amounts of digital data has given rise to the interdisciplinary field of <a href="https://en.wikipedia.org/wiki/Data_science">‘Data Science’</a> as well as an increasing demand for ‘Data Scientists.’ While nothing within Data Science is particularly new on its own, it is the combination of skills and insights from different fields (particularly Computer Science and Statistics) that has proven to be very productive in meeting new challenges posed by a data-driven economy. The various facets of this new craft are often illustrated in the ‘Data Science’ Venn-Diagram (see, for example, <a href="http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/" class="uri">http://berkeleysciencereview.com/how-to-become-a-data-scientist-before-you-graduate/</a>), reflecting the combination of knowledge and skills from Mathematics/Statistics, substantive expertise in the particular scientific field in which Data Science is applied, and ‘hacking skills,’ that is, the skills necessary for <em>acquiring, cleaning, and analyzing</em> data <em>programmatically</em>.</p>
+<p>Apart from the current ‘Data Science developments’ and the related career opportunities for young economists, learning to program comes with many benefits for academic work in graduate economics. Many of the courses in your curriculum will at least partially touch upon practical programming exercises or concepts related to programming and scientific computing in an environment like R.</p>
+<div id="why-r" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Why <em>R</em>?</h2>
+<div id="the-data-language" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> The ‘data language’</h3>
+<p>The programming language and open-source statistical computing environment <a href="www.r-project.org"><em>R</em></a> has over the last decade become a core tool for data science in industry and academia. It was originally designed as a tool for statistical analysis. Many characteristics of the language make <em>R</em> particularly useful to work with data. With the rise of the ‘data economy’ and ‘data science,’ <em>R</em> is increasingly used in various domains, going well beyond the traditional applications of academic research.</p>
+</div>
+<div id="high-level-language-relatively-easy-to-learn" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> High-level language, relatively easy to learn</h3>
+<p><em>R</em> is a relatively easy computer language to learn for people with no previous programming experience. The syntax is rather intuitive and error messages are not too cryptic to understand (this facilitates learning by doing). Moreover, with <em>R</em>’s recent stark rise in popularity, there are plenty of freely accessible resources online that help beginners to learn the language.</p>
+</div>
+<div id="free-open-source-large-community" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Free, open source, large community</h3>
+<p>Due to its vast base of contributors, <em>R</em> serves as a valuable tool for users in various fields related to data analysis and computation (economics/econometrics, biomedicine, business analytics, etc.). <em>R</em> users have direct access to thousands of freely available ‘<em>R</em>-packages’ (small software libraries written in <em>R</em>), covering diverse aspects of data analysis, statistics, data preparation, and data import.</p>
+<p>Hence, a lot of people using <em>R</em> as a tool in their daily work do not actually ‘write programs’ (in the traditional sense of the word), but apply <em>R</em> packages. Applied econometrics with <em>R</em> is a good example of this. Almost any function a modern commercial computing environment with a focus on statistics and econometrics (such as <a href="http://www.stata.com/">STATA</a>) is offering, can also be found within the <em>R</em> environment. Furthermore, there are <em>R</em> packages covering all the areas of modern data analytics, including natural language processing, machine learning, big data analytics, etc. (see the <a href="https://cran.r-project.org/web/views/">CRAN Task Views</a> for an overview). We thus do not actually have to write a program for many tasks we perform with <em>R</em>. Instead, we can build on already existing and reliable packages.</p>
+</div>
+</div>
+<div id="the-tools-rrstudio" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> The tools: <em>R</em>/RStudio</h2>
+<p><em>R</em> is the high-level (meaning ‘more user friendly’) programming language for statistical computing. Once we have installed <em>R</em> on our computer, we can run it…</p>
+<ol style="list-style-type: lower-alpha">
+<li>…directly from the command line, by typing <code>R</code> and hit enter (here in the OSX terminal):</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:terminal"></span>
+<img src="img/r_terminal.png" alt="Running R in the Mac/OSX terminal." width="60%" />
+<p class="caption">
+Figure 1.1: Running <em>R</em> in the Mac/OSX terminal.
+</p>
+</div>
+
+<ol start="2" style="list-style-type: lower-alpha">
+<li>…with the simple <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">Integrated Development Environment (IDE)</a> delivered with the basic <em>R</em> installation</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:ide"></span>
+<img src="img/r_ide.png" alt="Running R in the original R GUI/IDE." width="75%" />
+<p class="caption">
+Figure 1.2: Running <em>R</em> in the original <em>R</em> GUI/IDE.
+</p>
+</div>
+
+<ol start="3" style="list-style-type: lower-alpha">
+<li>…or with the more elaborated and user-friendly IDE called <em>RStudio</em> (either locally or in the cloud, see, for example <a href="https://rstudio.cloud/">RStudio Cloud</a>:</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:rstudio"></span>
+<img src="img/rstudio_panels.png" alt="Running R in RStudio (IDE)." width="75%" />
+<p class="caption">
+Figure 1.3: Running <em>R</em> in RStudio (IDE).
+</p>
+</div>
+
+<p>The latter is what we will do throughout this course. RStudio is a very helpful tool for simple data analysis with <em>R</em>, writing <em>R</em> scripts (short <em>R</em> programs), or even for developing <em>R</em> packages (software written in <em>R</em>), as well as building interactive documents, presentations, etc. Moreover, it offers many options to change its own appearance (Pane Layout, Code Highlighting, etc.).</p>
+<p>In the following, we have a look at each of the main panels that will be relevant in this course.</p>
+<div id="the-r-console" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> The <em>R</em>-Console</h3>
+<p>When working in an interactive session, we simply type <em>R</em> commands directly into the <em>R</em> console. Typically, the output of executing a command this way is also directly printed to the console. Hence, we type a command on one line, hit enter, and the output is presented on the next line.</p>
+<div class="figure" style="text-align: center"><span id="fig:console"></span>
+<img src="img/rstudio_console.png" alt="Running R in the Mac/OSX terminal." width="75%" />
+<p class="caption">
+Figure 1.4: Running <em>R</em> in the Mac/OSX terminal.
+</p>
+</div>
+
+<p>For example, we can tell <em>R</em> to print the phrase <code>Hello world</code> to the console, by typing to following command in the console and hit enter:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="why-learn-to-program-now.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello world&quot;</code></pre>
+</div>
+<div id="r-scripts" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> <em>R</em>-Scripts</h3>
+<p>Apart from very short interactive sessions, it usually makes sense to write <em>R</em> code not directly in the command line but to an <em>R</em>-script in the script panel. This way, we can easily execute several lines at once, comment the code (to explain what it does), save it on our hard disk, and further develop the code later on.</p>
+<div class="figure" style="text-align: center"><span id="fig:rscript"></span>
+<img src="img/rstudio_script.png" alt="The R Script window in RStudio." width="75%" />
+<p class="caption">
+Figure 1.5: The <em>R</em> Script window in RStudio.
+</p>
+</div>
+
+</div>
+<div id="r-environment" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> <em>R</em> Environment</h3>
+<p>The environment pane shows what variables, objects, and data are loaded in our current <em>R</em> session. Moreover, it offers functions to open documents and import data.</p>
+<div class="figure" style="text-align: center"><span id="fig:renvironment"></span>
+<img src="img/rstudio_environment.png" alt="The environment window in RStudio." width="50%" />
+<p class="caption">
+Figure 1.6: The environment window in RStudio.
+</p>
+</div>
+
+</div>
+<div id="file-browser" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> File Browser</h3>
+<p>With the file browser window we can navigate through the folder structure and files on our computer’s hard disk, modify files, and set the working directory of our current <em>R</em> session. Moreover, it has a pane to show plots generated in <em>R</em> and a pane with help pages and <em>R</em> documentation.</p>
+<div class="figure" style="text-align: center"><span id="fig:rfiles"></span>
+<img src="img/rstudio_files.png" alt="The file browser window in RStudio." width="50%" />
+<p class="caption">
+Figure 1.7: The file browser window in RStudio.
+</p>
+</div>
+
+</div>
+</div>
+<div id="exercises" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Exercises</h2>
+<div id="exercise-a-setting-up-a-working-environment" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Exercise A: Setting up a Working Environment</h3>
+<ol style="list-style-type: decimal">
+<li><p>Open RStudio and get familiar with the file browser pane on the lower right. Navigate to a folder on your hard disk in which you want to work throughout this course (and store all the code you write in this course).</p></li>
+<li><p>Use the ‘New Folder’-button to create a new folder. Name this new folder <code>r_course</code>.</p></li>
+<li><p>You should see the new folder listed in the file browser. Click on it to navigate to its contents (so far empty). Now, click on the ‘More’ button and select ‘Set as Working Directory’ in the drop-down menu.</p></li>
+<li><p>Again, use the ‘New Folder’-button in order to create two new folders called <code>data</code> and <code>code</code>.</p></li>
+<li><p>Finally, click on the project button in the top-right corner of the RStudio window (<img src="img/rproject.png" />) and select ‘New Project’ in the drop-down menu. In the pop-up window, select ‘Existing directory,’ browse to and select your <code>r_course</code> folder, then click ‘Create Project.’</p></li>
+</ol>
+<p>Now you know how to set up a meaningful basic folder structure and working environment for an <em>R</em> project. The next exercise teaches you how to write <em>R</em> scripts in this environment.</p>
+</div>
+<div id="exercise-b-r-scripts" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Exercise B: <em>R</em> Scripts</h3>
+<ol style="list-style-type: decimal">
+<li>Switch to the <em>R</em> console and type the following line of code and hit enter (see example from above).</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="why-learn-to-program-now.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
+<p>You should see the words <code>"Hello world"</code> printed on screen. This is the usual way of working with <em>R</em> in an interactive session. However, as pointed out above, in most circumstances it makes sense to write the <em>R</em> code to an <em>R</em> script (in order to store and document it) and then execute the code from there.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>In the RStudio menu bar select <code>File/New File/R Script</code> to create a new file, shown/opened in the Script pane.</p></li>
+<li><p>Type <code>print("Hello world")</code> to the first line of the script, and click on ‘Run’ (<img src="img/run.png" />) to execute the code in the console.</p></li>
+<li><p>Save the file as <code>hello_world.R</code> (<code>File/Save As...</code>) in the sub folder <code>code</code> (created in the previous exercise).</p></li>
+<li><p>Type the following command into the command line and hit enter:</p></li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="why-learn-to-program-now.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;code/hello_world.R&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+<p>Now you know how to execute <em>R</em> code directly in the console (interactive session), how to execute lines of code written to an <em>R</em> script, as well as how to execute the entire <em>R</em> script (stored on disk) from the command line.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="first-steps-with-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_intro.pdf", "r_intro.html", "r_intro.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
