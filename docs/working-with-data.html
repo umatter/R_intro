@@ -10,16 +10,16 @@
 
   <meta property="og:title" content="Chapter 3 Working with Data | A Brief Introduction to Programming with R" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/while_loop_own_black.png" />
+  <meta property="og:url" content="https://umatter.github.io/R_intro/" />
+  <meta property="og:image" content="https://umatter.github.io/R_intro/img/while_loop_own_black.png" />
   <meta property="og:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
-  
+  <meta name="github-repo" content="umatter/R_intro" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Working with Data | A Brief Introduction to Programming with R" />
   
   <meta name="twitter:description" content="A compact guide to the fundamental practices of programming with R in the context of economic research." />
-  <meta name="twitter:image" content="img/while_loop_own_black.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/R_intro/img/while_loop_own_black.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
@@ -477,13 +477,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  One Sample t-test
 ## 
 ## data:  sample
-## t = -2, df = 99, p-value = 0.05
+## t = -1.1, df = 99, p-value = 0.3
 ## alternative hypothesis: true mean is not equal to 10
 ## 95 percent confidence interval:
-##  9.206 9.993
+##   9.377 10.173
 ## sample estimates:
 ## mean of x 
-##       9.6</code></pre>
+##     9.775</code></pre>
 <div id="regression-analysis-with-r" class="section level3" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Regression analysis with <em>R</em></h3>
 <p>Finally, <em>R</em> and additional <em>R</em> packages offer functions for almost all models and tests in modern applied econometrics. While the syntax and return values of these functions are note 100% consistent (due to the fact that many different authors contributed some of these functions), applying them is usually quite similar. Functions for econometric models typically have the two main parameters <code>data</code> (the dataset to use in the estimation, in <code>data.frame</code>-format) and <code>formula</code> (a symbolic description of the model to be fitted, following a defined convention). Typically, the following three steps are involved when running regressions in <em>R</em> (assuming the data is already loaded and prepared):</p>
